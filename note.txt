@@ -1,0 +1,14 @@
+
+1. najwpier w postmanie jescze raz to wszytko przetestować
+
+2. W controlerze get pojedyncze po id
+
+3. pomyśleć o dodaniu testów
+
+4. pomyśleć o veryfikatorach
+
+5. zapisywanie do pliku na kompie(do druku)
+
+6. nazwy w post
+
+7. zagitowac
