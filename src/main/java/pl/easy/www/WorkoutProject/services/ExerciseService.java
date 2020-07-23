@@ -16,9 +16,8 @@ public class ExerciseService {
 	@Autowired
 	private ExerciseRepository exerciseRepository;
 	
-	public Exercise add(String exerciseGroupName, String exerciseDirectName, String muscleGroupName, String muscleDirectName ) {		
+	public Exercise add(Exercise exercise) {		
 		
-		Exercise exercise = new Exercise(exerciseGroupName, exerciseDirectName, muscleGroupName, muscleDirectName);
 		return exerciseRepository.save(exercise);
 		
 	}
@@ -31,7 +30,7 @@ public class ExerciseService {
 		exerciseRepository.delete(exercise);
 	}
 	
-	public void deleteByIndex(int id) {
+	public void delete(int id) {
 		exerciseRepository.deleteById(id);
 	}
 	
@@ -39,18 +38,21 @@ public class ExerciseService {
 		return exerciseRepository.findById(id).get();
 	}
 	
-	public Exercise update(String exerciseGroupName, String exerciseDirectName, String muscleGroupName, String muscleDirectName,int id) {
+	public Exercise update(Exercise updateExercise,int id) {
 		
 		Exercise exercise = exerciseRepository.findById(id).get();
 		
-		exercise.setExerciseDirectName(exerciseDirectName);
-		exercise.setExerciseGroupName(exerciseGroupName);
-		exercise.setMuscleDirectName(muscleDirectName);
-		exercise.setMuscleGroupName(muscleGroupName);
+		exercise.setExerciseDirectName(updateExercise.getExerciseDirectName());
+		exercise.setExerciseGroupName(updateExercise.getExerciseGroupName());
+		exercise.setMuscleDirectName(updateExercise.getMuscleDirectName());
+		exercise.setMuscleGroupName(updateExercise.getMuscleGroupName());
 		
 		return exerciseRepository.save(exercise);
 		
-		
+	}
+	
+	public void clearDB() {
+		exerciseRepository.deleteAll();
 	}
 				
 	

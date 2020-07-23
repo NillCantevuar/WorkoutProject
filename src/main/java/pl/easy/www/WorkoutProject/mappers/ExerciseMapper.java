@@ -9,6 +9,7 @@ import java.util.stream.StreamSupport;
 import pl.easy.www.WorkoutProject.currentWorkout.BreakElement;
 import pl.easy.www.WorkoutProject.currentWorkout.ExerciseElement;
 import pl.easy.www.WorkoutProject.entity.Exercise;
+import pl.easy.www.WorkoutProject.protocol.request.CompleteRequest;
 import pl.easy.www.WorkoutProject.protocol.request.VolumeRequest;
 import pl.easy.www.WorkoutProject.protocol.response.ExerciseResponse;
 
@@ -41,6 +42,19 @@ public class ExerciseMapper {
 				exercise.getExerciseDirectName(),
 				exercise.getMuscleGroupName(),
 				exercise.getMuscleDirectName());
+		
+	}
+	
+	public static ExerciseElement eRequestToEElement (CompleteRequest completeRequest) {
+		
+		return new ExerciseElement(
+				completeRequest.getExerciseRequest().getExerciseGroupName(),
+				completeRequest.getExerciseRequest().getExerciseDirectName(),
+				completeRequest.getExerciseRequest().getMuscleGroupName(),
+				completeRequest.getExerciseRequest().getMuscleDirectName(),
+				completeRequest.getVolumeRequest().getSeries(),
+				completeRequest.getVolumeRequest().getRepetitions());
+		
 		
 	}
 	

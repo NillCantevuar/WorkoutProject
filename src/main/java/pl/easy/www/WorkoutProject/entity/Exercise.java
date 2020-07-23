@@ -24,13 +24,14 @@ public class Exercise implements WorkoutPice {
 		this.exerciseDirectName =exerciseDirectName;
 		this.muscleDirectName = muscleDirectName;
 		this.muscleGroupName = musculeGroupName;
+		id = null;
 	}
 
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
-	private int id;
+	private Integer id;
 	
 	@Column(name = "exercise_group_name")
 	private String exerciseGroupName;
@@ -68,11 +69,11 @@ public class Exercise implements WorkoutPice {
 		this.series = series;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -125,6 +126,60 @@ public class Exercise implements WorkoutPice {
 				+" "  
 				+"\\/";
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((exerciseDirectName == null) ? 0 : exerciseDirectName.hashCode());
+		result = prime * result + ((exerciseGroupName == null) ? 0 : exerciseGroupName.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((muscleDirectName == null) ? 0 : muscleDirectName.hashCode());
+		result = prime * result + ((muscleGroupName == null) ? 0 : muscleGroupName.hashCode());
+		result = prime * result + reps;
+		result = prime * result + series;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Exercise other = (Exercise) obj;
+		if (exerciseDirectName == null) {
+			if (other.exerciseDirectName != null)
+				return false;
+		} else if (!exerciseDirectName.equals(other.exerciseDirectName))
+			return false;
+		if (exerciseGroupName == null) {
+			if (other.exerciseGroupName != null)
+				return false;
+		} else if (!exerciseGroupName.equals(other.exerciseGroupName))
+			return false;
+		if (id != other.id)
+			return false;
+		if (muscleDirectName == null) {
+			if (other.muscleDirectName != null)
+				return false;
+		} else if (!muscleDirectName.equals(other.muscleDirectName))
+			return false;
+		if (muscleGroupName == null) {
+			if (other.muscleGroupName != null)
+				return false;
+		} else if (!muscleGroupName.equals(other.muscleGroupName))
+			return false;
+		if (reps != other.reps)
+			return false;
+		if (series != other.series)
+			return false;
+		return true;
+	}
+	
+	
 
 
 	

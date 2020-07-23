@@ -35,12 +35,12 @@ public class ExerciseController {
 	public ExerciseResponse add(@RequestBody ExerciseRequest request) {
 
 		return ExerciseMapper
-				.mapExercise(service.add(
+				.mapExercise(service.add(new Exercise(
 						request.getExerciseGroupName(),
 						request.getExerciseDirectName(),
 						request.getMuscleGroupName(),
 						request.getMuscleDirectName()
-						));		
+						)));		
 	}
 
 	@GetMapping
@@ -62,19 +62,19 @@ public class ExerciseController {
 	public ExerciseResponse	update(@RequestBody ExerciseRequest request, @PathVariable int id){
 		
 		return ExerciseMapper
-				.mapExercise(service.update(
+				.mapExercise(service.update(new Exercise(
 						request.getExerciseGroupName(),
 						request.getExerciseDirectName(),
 						request.getMuscleGroupName(),
-						request.getMuscleDirectName(),
+						request.getMuscleDirectName()),
 						id
-						));		
+						));		 
 		
 	}
 	
 	@DeleteMapping(value = "/delete")
 	public void delete(@RequestParam int id) {	
-		service.deleteByIndex(id);
+		service.delete(id);
 	}
 	
 	

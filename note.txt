@@ -1,8 +1,6 @@
 
 1. najwpier w postmanie jescze raz to wszytko przetestować
 
-2. W controlerze get pojedyncze po id
-
 3. pomyśleć o dodaniu testów
 
 4. pomyśleć o veryfikatorach
@@ -12,3 +10,9 @@
 6. nazwy w post
 
 7. zagitowac
+
+8. testy bazy danych ogarnac na h2
+
+9.repository ma metode exist
+
+10. problem z generowanie mtego samego id

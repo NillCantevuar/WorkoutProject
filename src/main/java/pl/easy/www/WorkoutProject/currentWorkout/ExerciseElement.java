@@ -74,6 +74,55 @@ public class ExerciseElement implements WorkoutPice{
 				+ ", muscleGroupName=" + muscleGroupName + ", muscleDirectName=" + muscleDirectName + ", series="
 				+ series + ", repetitions=" + repetitions + "]";
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((exerciseDirectName == null) ? 0 : exerciseDirectName.hashCode());
+		result = prime * result + ((exerciseGroupName == null) ? 0 : exerciseGroupName.hashCode());
+		result = prime * result + ((muscleDirectName == null) ? 0 : muscleDirectName.hashCode());
+		result = prime * result + ((muscleGroupName == null) ? 0 : muscleGroupName.hashCode());
+		result = prime * result + repetitions;
+		result = prime * result + series;
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ExerciseElement other = (ExerciseElement) obj;
+		if (exerciseDirectName == null) {
+			if (other.exerciseDirectName != null)
+				return false;
+		} else if (!exerciseDirectName.equals(other.exerciseDirectName))
+			return false;
+		if (exerciseGroupName == null) {
+			if (other.exerciseGroupName != null)
+				return false;
+		} else if (!exerciseGroupName.equals(other.exerciseGroupName))
+			return false;
+		if (muscleDirectName == null) {
+			if (other.muscleDirectName != null)
+				return false;
+		} else if (!muscleDirectName.equals(other.muscleDirectName))
+			return false;
+		if (muscleGroupName == null) {
+			if (other.muscleGroupName != null)
+				return false;
+		} else if (!muscleGroupName.equals(other.muscleGroupName))
+			return false;
+		if (repetitions != other.repetitions)
+			return false;
+		if (series != other.series)
+			return false;
+		return true;
+	}
+	
+	
 	
 	
 
