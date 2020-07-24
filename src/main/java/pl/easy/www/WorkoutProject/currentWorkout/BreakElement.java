@@ -16,7 +16,7 @@ public class BreakElement implements WorkoutPice{
 
 	@Override
 	public String toString() {
-		return "BreakElement [duration=" + duration + "]";
+		return "Break: "+duration+"s\n\n";
 	}
 
 	public BreakElement(int duration) {

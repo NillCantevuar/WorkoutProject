@@ -1,7 +1,11 @@
 package pl.easy.www.WorkoutProject.services;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pl.easy.www.WorkoutProject.currentWorkout.BreakElement;
@@ -18,6 +22,23 @@ import pl.easy.www.WorkoutProject.protocol.request.VolumeRequest;
 @Service
 public class CurrentWorkoutService {
 	
+	@Autowired
+	ExerciseService exerciseService;
+	
+	public void addExercise(int id, int repetitions, int series ) {
+		
+		Exercise exerciseFromDB = exerciseService.giveById(id);
+		
+		CurrentWorkout.workout.add(new ExerciseElement(
+				exerciseFromDB.getExerciseGroupName(),
+				exerciseFromDB.getExerciseDirectName(),
+				exerciseFromDB.getMuscleGroupName(),
+				exerciseFromDB.getMuscleDirectName(),
+				series,
+				repetitions));
+		
+	}
+	
 
 	public void addExercise(CompleteRequest request) {
 		
@@ -30,7 +51,7 @@ public class CurrentWorkoutService {
 				exercise.getMuscleGroupName(),
 				exercise.getMuscleDirectName(),
 				volume.getSeries(),
-				volume.getRepetitions()));
+				volume.getRepetitions())); 
 			
 	}
 	
@@ -60,17 +81,63 @@ public class CurrentWorkoutService {
 				volume.getRepetitions()));
 	}
 	
+	public void replaceByExercuseAtIndex(int id,int currId, int repetitions, int series) {
+		
+		Exercise exercise =exerciseService.giveById(id);
+		
+		CurrentWorkout.workout.set(currId, new ExerciseElement(
+				exercise.getExerciseGroupName(),
+				exercise.getExerciseDirectName(),
+				exercise.getMuscleGroupName(),
+				exercise.getMuscleDirectName(),
+				series,
+				repetitions));
+		
+		
+		
+	}
+	
 	public void replaceByBreakAtIndex(BreakRequest request, int index) {
 		
 		CurrentWorkout.workout.set(index, new BreakElement(request.getDuration()));
 	}
 	
 	
-	//give list
-	
 	public List<WorkoutPice> getList(){
 		return CurrentWorkout.workout;
+	} 
+	
+	public String saveWorkout () {
+		
+		StringBuilder sb = new StringBuilder();
+		
+		for (WorkoutPice workoutPice : CurrentWorkout.workout) {
+			
+			sb.append(workoutPice.toString());
+			
+		}
+		
+		return sb.toString();
+		
 	}
+	
+	public void saveAtDesktop(String workout) {
+		String userHomeFolder =System.getProperty("user.home");
+		File textFile = new File(userHomeFolder,"ZapisanyTrening.txt");
+		try{
+			BufferedWriter out = new BufferedWriter(new FileWriter(textFile));
+			out.write(workout);
+			out.flush();
+			out.close();
+			
+		}catch (Exception e) {
+			e.getStackTrace();
+		}
+		
+		
+	}
+	
+	
 
 	
 	

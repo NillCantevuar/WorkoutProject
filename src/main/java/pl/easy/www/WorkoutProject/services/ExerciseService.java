@@ -39,7 +39,7 @@ public class ExerciseService {
 	}
 	
 	public Exercise update(Exercise updateExercise,int id) {
-		
+		 
 		Exercise exercise = exerciseRepository.findById(id).get();
 		
 		exercise.setExerciseDirectName(updateExercise.getExerciseDirectName());
@@ -50,7 +50,7 @@ public class ExerciseService {
 		return exerciseRepository.save(exercise);
 		
 	}
-	
+	 
 	public void clearDB() {
 		exerciseRepository.deleteAll();
 	}

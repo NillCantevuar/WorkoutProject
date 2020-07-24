@@ -70,9 +70,9 @@ public class ExerciseElement implements WorkoutPice{
 	
 	@Override
 	public String toString() {
-		return "ExerciseElement [exerciseGroupName=" + exerciseGroupName + ", exerciseDirectName=" + exerciseDirectName
-				+ ", muscleGroupName=" + muscleGroupName + ", muscleDirectName=" + muscleDirectName + ", series="
-				+ series + ", repetitions=" + repetitions + "]";
+		return "//"+exerciseGroupName + " " + exerciseDirectName+"\n"+
+				"Target: "+ muscleGroupName +" "+ muscleDirectName + "\n"+ 
+				"Series: "+ series + " Reps: " + repetitions+"\n\n";
 	}
 	@Override
 	public int hashCode() {

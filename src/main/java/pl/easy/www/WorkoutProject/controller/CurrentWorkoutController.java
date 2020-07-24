@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.vaadin.flow.router.OptionalParameter;
+
 import pl.easy.www.WorkoutProject.interfaces.WorkoutPice;
 import pl.easy.www.WorkoutProject.protocol.request.BreakRequest;
 import pl.easy.www.WorkoutProject.protocol.request.CompleteRequest;
@@ -54,6 +56,12 @@ public class CurrentWorkoutController {
 	public void replaceByBreakAtIndex(@RequestBody BreakRequest request, int index) {
 		
 		service.replaceByBreakAtIndex(request,index);
+	}
+	
+	@PostMapping (value="/saveWorkout")	
+	public void saveWorkout() {
+		
+		service.saveWorkout();
 	}
 	
 

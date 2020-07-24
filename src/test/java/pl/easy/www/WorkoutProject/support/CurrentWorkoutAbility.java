@@ -69,7 +69,7 @@ public class CurrentWorkoutAbility {
 	public BreakRequest generateSingleDifferentBreakRequest() {
 		return new BreakRequest(60);
 	}
-	
+	 
 
 
 }

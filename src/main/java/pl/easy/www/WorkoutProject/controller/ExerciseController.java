@@ -25,7 +25,7 @@ import pl.easy.www.WorkoutProject.services.ExerciseService;
 
 @RestController
 @Transactional
-@RequestMapping("/api")
+@RequestMapping("/api/exercises")
 public class ExerciseController {
 
 	@Autowired

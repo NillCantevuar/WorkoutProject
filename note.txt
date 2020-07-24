@@ -1,18 +1,41 @@
 
 1. najwpier w postmanie jescze raz to wszytko przetestować
 
-3. pomyśleć o dodaniu testów
-
 4. pomyśleć o veryfikatorach
 
 5. zapisywanie do pliku na kompie(do druku)
 
 6. nazwy w post
 
-7. zagitowac
-
-8. testy bazy danych ogarnac na h2
-
-9.repository ma metode exist
-
 10. problem z generowanie mtego samego id
+
+11. przetestowac current workout ca pomoca postmana
+
+12. jak powinno to dzialac, do current powinienem dodawac po id z exercise list ?
+
+13. dodac nowe endpointy
+
+	-add exercise przyjmujacy jako path variable id z exercise_db
+	
+	-replaceByExercise przyjmujacy dwa razy path variable jako stareZCurr/noweZExercises
+	
+	-replaceByBreak przyjmujacy jednop pathvariavle jako stareZCurr
+	
+	
+15 dodac do servisu
+
+	-exercise service ?	(T!,TP)
+	
+	-add przyjmujacy id, pobranie za jego pomoca z exercises i dodanie do curr (T!,TP)
+	
+	-replace by exercise przyjmujacy dwa id, pobierra za pomoca drugiego(?) z exercises i zastepuje stare (T!,TP)
+	
+	
+16 pomyslec jak inaczej mozna rozwiazac break
+
+	- wystarczy ze bede przyjmowal sama ilość sekund
+
+	-przesledziec gdzie bede musail poroblic zmiany i zostawic annotacje TODO	
+//////
+
+
