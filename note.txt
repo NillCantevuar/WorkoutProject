@@ -38,4 +38,4 @@
 	-przesledziec gdzie bede musail poroblic zmiany i zostawic annotacje TODO	
 //////
 
-
+Obecnie pisze testy w nowej klasie

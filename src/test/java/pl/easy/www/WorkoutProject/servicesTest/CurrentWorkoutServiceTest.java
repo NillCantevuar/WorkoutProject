@@ -2,6 +2,7 @@ package pl.easy.www.WorkoutProject.servicesTest;
 
 import java.util.ArrayList;
 
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -9,6 +10,10 @@ import org.junit.Test;
 import org.junit.jupiter.api.Disabled;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
+import org.mockito.Matchers;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.stereotype.Service;
@@ -21,22 +26,16 @@ import pl.easy.www.WorkoutProject.mappers.BreakMapper;
 import pl.easy.www.WorkoutProject.mappers.ExerciseMapper;
 import pl.easy.www.WorkoutProject.protocol.request.BreakRequest;
 import pl.easy.www.WorkoutProject.protocol.request.CompleteRequest;
-import pl.easy.www.WorkoutProject.protocol.request.ExerciseRequest;
-import pl.easy.www.WorkoutProject.protocol.request.VolumeRequest;
+
 import pl.easy.www.WorkoutProject.services.CurrentWorkoutService;
 import pl.easy.www.WorkoutProject.services.ExerciseService;
 import pl.easy.www.WorkoutProject.support.CurrentWorkoutAbility;
 
-@RunWith(SpringRunner.class)
+
 @SpringBootTest
 public class CurrentWorkoutServiceTest extends CurrentWorkoutAbility{
 	
-	@Autowired
-	ExerciseService exerciseService;
-	
-	@Autowired
-	CurrentWorkoutService currentWorkoutService;
-	
+	CurrentWorkoutService currentWorkoutService = new CurrentWorkoutService();
 	
 	@Before
 	public void clear() {
@@ -53,27 +52,13 @@ public class CurrentWorkoutServiceTest extends CurrentWorkoutAbility{
 		currentWorkoutService.addExercise(completeRequest);
 		//then
 		Assert.assertEquals(CurrentWorkout.workout.size(),1);
-		
-	}
 	
-	@Test
-	public void should_add_one_exercise_equal_size_from_DB () {
-		//given
-		
-		CompleteRequest completeRequest = generateSingleCompleteRequest();
-		//when
-		currentWorkoutService.addExercise(completeRequest);
-		//then
-		Assert.assertEquals(CurrentWorkout.workout.size(),1);
 		
 	}
 	
 	@Test
 	public void should_add_one_exercise_equal_exercise () {
-
-
-		//given
-		
+		//given	
 		CompleteRequest completeRequest = generateSingleCompleteRequest();
 		ExerciseElement element = ExerciseMapper.eRequestToEElement(completeRequest);
 		//when
@@ -82,6 +67,7 @@ public class CurrentWorkoutServiceTest extends CurrentWorkoutAbility{
 		Assert.assertEquals(CurrentWorkout.workout.get(0),element);
 		
 	}
+	
 	
 	@Test
 	public void should_add_multiple_exercises_equal_size () {

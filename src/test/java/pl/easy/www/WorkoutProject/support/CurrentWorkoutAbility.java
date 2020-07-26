@@ -1,12 +1,18 @@
 package pl.easy.www.WorkoutProject.support;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import pl.easy.www.WorkoutProject.protocol.request.BreakRequest;
 import pl.easy.www.WorkoutProject.protocol.request.CompleteRequest;
 import pl.easy.www.WorkoutProject.protocol.request.ExerciseRequest;
 import pl.easy.www.WorkoutProject.protocol.request.VolumeRequest;
 import pl.easy.www.WorkoutProject.services.CurrentWorkoutService;
+import pl.easy.www.WorkoutProject.services.ExerciseService;
 
-public class CurrentWorkoutAbility {
+public class CurrentWorkoutAbility extends ExerciseAbility{
+	
+	@Autowired
+	ExerciseService exerciseService;
 	
 	public void prepereNotEmptyList() {
 		
@@ -69,6 +75,8 @@ public class CurrentWorkoutAbility {
 	public BreakRequest generateSingleDifferentBreakRequest() {
 		return new BreakRequest(60);
 	}
+	
+	
 	 
 
 
