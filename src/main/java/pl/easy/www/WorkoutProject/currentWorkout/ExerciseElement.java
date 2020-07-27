@@ -1,5 +1,6 @@
 package pl.easy.www.WorkoutProject.currentWorkout;
 
+import pl.easy.www.WorkoutProject.entity.Exercise;
 import pl.easy.www.WorkoutProject.interfaces.WorkoutPice;
 
 public class ExerciseElement implements WorkoutPice{
@@ -31,6 +32,16 @@ public class ExerciseElement implements WorkoutPice{
 		this.series = series;
 		this.repetitions = repetitions;
 	}
+	public ExerciseElement(Exercise exercise, int series, int repetitions) {
+		
+		this.exerciseGroupName = exercise.getExerciseGroupName();
+		this.exerciseDirectName = exercise.getExerciseDirectName();
+		this.muscleGroupName = exercise.getMuscleGroupName();
+		this.muscleDirectName = exercise.getMuscleDirectName();
+		this.series = series;
+		this.repetitions = repetitions;
+	}
+	
 	public String getExerciseGroupName() {
 		return exerciseGroupName;
 	}
@@ -120,6 +131,16 @@ public class ExerciseElement implements WorkoutPice{
 		if (series != other.series)
 			return false;
 		return true;
+	}
+	@Override
+	public String getInfo() {
+			
+		return exerciseGroupName+
+		exerciseDirectName+
+		muscleGroupName+
+		muscleDirectName+
+		series+
+		repetitions;
 	}
 	
 	

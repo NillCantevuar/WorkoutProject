@@ -178,6 +178,16 @@ public class Exercise implements WorkoutPice {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String getInfo() {
+		
+		return exerciseGroupName+
+		exerciseDirectName+
+		muscleDirectName
+		+muscleGroupName;
+		
+	}
 	
 	
 

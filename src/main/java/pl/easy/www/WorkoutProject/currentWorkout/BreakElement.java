@@ -45,6 +45,12 @@ public class BreakElement implements WorkoutPice{
 			return false;
 		return true;
 	}
+
+	@Override
+	public String getInfo() {
+		
+		return String.valueOf(duration);
+	}
 	
 	
 	

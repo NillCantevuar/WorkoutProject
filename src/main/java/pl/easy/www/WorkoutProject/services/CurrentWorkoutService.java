@@ -25,21 +25,20 @@ public class CurrentWorkoutService {
 	@Autowired
 	ExerciseService exerciseService;
 	
-	public void addExercise(int id, int repetitions, int series ) {
+	public void addExercise(int id, int series, int repetitions ) {
 		
 		Exercise exerciseFromDB = exerciseService.giveById(id);
 		
 		CurrentWorkout.workout.add(new ExerciseElement(
 				exerciseFromDB.getExerciseGroupName(),
 				exerciseFromDB.getExerciseDirectName(),
-				exerciseFromDB.getMuscleGroupName(),
+				exerciseFromDB.getMuscleGroupName(), 
 				exerciseFromDB.getMuscleDirectName(),
 				series,
 				repetitions));
 		
 	}
 	
-
 	public void addExercise(CompleteRequest request) {
 		
 		ExerciseRequest exercise = request.getExerciseRequest();
@@ -55,17 +54,32 @@ public class CurrentWorkoutService {
 			
 	}
 	
+	public void addExercise(int id, VolumeRequest volumeRequest) {
+		
+		Exercise exerciseFromDB = exerciseService.giveById(id);
+		
+		CurrentWorkout.workout.add(new ExerciseElement(
+				exerciseFromDB.getExerciseGroupName(),
+				exerciseFromDB.getExerciseDirectName(),
+				exerciseFromDB.getMuscleGroupName(), 
+				exerciseFromDB.getMuscleDirectName(),
+				volumeRequest.getSeries(),
+				volumeRequest.getRepetitions()));
+	}
+	
+	
 	public void addBreak(BreakRequest request) {
 		
 		CurrentWorkout.workout.add(BreakMapper.map(request));
 		
 	}
+	public void addBreak(int duration) {
+		CurrentWorkout.workout.add(new BreakElement(duration));
+	}
 	
-
 	public void delete(int index) {
 		CurrentWorkout.workout.remove(index);
 	}
-	
 	
 	public void replaceByExerciseAtIndex(CompleteRequest request,int index) {
 		
@@ -81,7 +95,7 @@ public class CurrentWorkoutService {
 				volume.getRepetitions()));
 	}
 	
-	public void replaceByExercuseAtIndex(int id,int currId, int repetitions, int series) {
+	public void replaceByExerciseAtIndex(int id,int currId,int series,int repetitions) {
 		
 		Exercise exercise =exerciseService.giveById(id);
 		
@@ -135,6 +149,9 @@ public class CurrentWorkoutService {
 		}
 		
 		
+	}
+	public void clearCurrentWorkout() {
+		CurrentWorkout.workout.clear();
 	}
 	
 	

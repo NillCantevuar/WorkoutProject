@@ -83,7 +83,7 @@ public class CurrentWorkoutServiceTest extends CurrentWorkoutAbility{
 	}
 	
 	@Test
-	public void should_add_one_break_equal_size () {
+	public void should_add_one_break_by_object_equal_size () {
 		//given
 		
 		BreakRequest request= generateSingleBreakRequest();
@@ -93,9 +93,20 @@ public class CurrentWorkoutServiceTest extends CurrentWorkoutAbility{
 		Assert.assertEquals(CurrentWorkout.workout.size(),1);
 		
 	}
+	@Test
+	public void should_add_one_break_by_number_equal_size () {
+		//given
+		
+		BreakRequest request= generateSingleBreakRequest();
+		//when
+		currentWorkoutService.addBreak(30);
+		//then
+		Assert.assertEquals(CurrentWorkout.workout.size(),1);
+		
+	}
 	
 	@Test
-	public void should_add_one_break_equal_break () {
+	public void should_add_one_break_by_object_equal_break () {
 		//given
 		BreakRequest request= generateSingleBreakRequest();
 		BreakElement element = new BreakElement(30);
@@ -107,7 +118,18 @@ public class CurrentWorkoutServiceTest extends CurrentWorkoutAbility{
 	}
 	
 	@Test
-	public void should_add_multiple_breaks_equal_size () {
+	public void should_add_one_break_by_number_equal_break () {
+		//given
+		BreakElement element = new BreakElement(30);
+		//when
+		currentWorkoutService.addBreak(30);
+		//then
+		Assert.assertEquals(CurrentWorkout.workout.get(0),element);
+		
+	}
+	
+	@Test
+	public void should_add_multiple_breaks_by_object_equal_size () {
 		//given
 		BreakRequest request= generateSingleBreakRequest();
 		//when
@@ -116,6 +138,18 @@ public class CurrentWorkoutServiceTest extends CurrentWorkoutAbility{
 		currentWorkoutService.addBreak(request);
 		//then
 		Assert.assertEquals(CurrentWorkout.workout.size(),3);
+		
+	}
+	@Test
+	public void should_add_multiple_breaks_by_number_equal_size () {
+		//given
+		BreakRequest request= generateSingleBreakRequest();
+		//when
+		currentWorkoutService.addBreak(10);
+		currentWorkoutService.addBreak(20);
+		currentWorkoutService.addBreak(30);
+		//then
+		Assert.assertEquals(CurrentWorkout.workout.size(),3); 
 		
 	}
 	

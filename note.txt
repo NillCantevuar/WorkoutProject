@@ -15,27 +15,30 @@
 
 13. dodac nowe endpointy
 
-	-add exercise przyjmujacy jako path variable id z exercise_db
+	-add exercise przyjmujacy jako path variable id z exercise_db oraz dwa inty ser i rep
+	
+	-add exercise przyjmujacy jak path varialbel id z exercise oraz Volume Requesta
 	
 	-replaceByExercise przyjmujacy dwa razy path variable jako stareZCurr/noweZExercises
 	
 	-replaceByBreak przyjmujacy jednop pathvariavle jako stareZCurr
 	
+	-add break przyjmujacy path variable inta
+	
 	
 15 dodac do servisu
 
-	-exercise service ?	(T!,TP)
+	-exercise service ?	(TP)
 	
-	-add przyjmujacy id, pobranie za jego pomoca z exercises i dodanie do curr (T!,TP)
+	-add przyjmujacy id, pobranie za jego pomoca z exercises i dodanie do curr (TP)
 	
-	-replace by exercise przyjmujacy dwa id, pobierra za pomoca drugiego(?) z exercises i zastepuje stare (T!,TP)
+	-add przyjmiujacy id do exercisers oraz volumeRequesta (TP)
+	
+	-replace by exercise przyjmujacy dwa id, pobierra za pomoca drugiego(?) z exercises i zastepuje stare (TP)
+	
+	-break przyjmujacy inta(TP)
 	
 	
-16 pomyslec jak inaczej mozna rozwiazac break
-
-	- wystarczy ze bede przyjmowal sama ilość sekund
-
-	-przesledziec gdzie bede musail poroblic zmiany i zostawic annotacje TODO	
 //////
 
-Obecnie pisze testy w nowej klasie
+Obecnie pisze metody w Cur controler do nowych add
