@@ -1,32 +1,30 @@
 
-1. najwpier w postmanie jescze raz to wszytko przetestować
+1. najwpier w postmanie jescze raz to wszytko przetestować (D)
 
-4. pomyśleć o veryfikatorach
+4. pomyśleć o veryfikatorach (W)
 
-5. zapisywanie do pliku na kompie(do druku)
+5. zapisywanie do pliku na kompie(do druku) (T)
 
-6. nazwy w post
+10. problem z generowanie mtego samego id (?)
 
-10. problem z generowanie mtego samego id
+11. przetestowac current workout ca pomoca postmana (TP)
 
-11. przetestowac current workout ca pomoca postmana
+12. jak powinno to dzialac, do current powinienem dodawac po id z exercise list ? (D)
 
-12. jak powinno to dzialac, do current powinienem dodawac po id z exercise list ?
+13. dodac nowe endpointy (W)
 
-13. dodac nowe endpointy
-
-	-add exercise przyjmujacy jako path variable id z exercise_db oraz dwa inty ser i rep
+	-add exercise przyjmujacy jako path variable id z exercise_db oraz dwa inty ser i rep (W)
 	
-	-add exercise przyjmujacy jak path varialbel id z exercise oraz Volume Requesta
+	-add exercise przyjmujacy jak path varialbel id z exercise oraz Volume Requesta (W)
 	
-	-replaceByExercise przyjmujacy dwa razy path variable jako stareZCurr/noweZExercises
+	-replaceByExercise przyjmujacy dwa razy path variable jako stareZCurr/noweZExercises (W)
 	
-	-replaceByBreak przyjmujacy jednop pathvariavle jako stareZCurr
+	-replaceByBreak przyjmujacy  pathvariavle oraz requestPram (W)
 	
-	-add break przyjmujacy path variable inta
+	-add break przyjmujacy path variable inta (W)
 	
 	
-15 dodac do servisu
+15 dodac do servisu (W)
 
 	-exercise service ?	(TP)
 	

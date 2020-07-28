@@ -49,7 +49,7 @@ public class ExerciseController {
 		return ExerciseMapper.mapExerciseList(
 				service.getAllExercises());
 	}
-	
+	 
 	
 	@GetMapping(value = "/getById/{id}")
 	public @ResponseBody ExerciseResponse getExerciseById(@PathVariable int id) {

@@ -61,7 +61,7 @@ public class CurrentWorkoutServiceTestWithContext extends ExerciseAbility{
 		currentService.addExercise(exercise.getId(), volumeRequest);
 		//
 		List<WorkoutPice> allExercises = currentService.getList();
-		Assert.assertEquals(allExercises.get(0).getInfo(),wp.getInfo());
+		Assert.assertEquals(allExercises.get(0).showInfo(),wp.showInfo());
 		
 	}
 	
@@ -76,7 +76,7 @@ public class CurrentWorkoutServiceTestWithContext extends ExerciseAbility{
 		currentService.addExercise(exercise.getId(),serices,repetitions);
 		//then
 		List<WorkoutPice> allExercises = currentService.getList();
-		Assert.assertEquals(allExercises.get(0).getInfo(),wp.getInfo());
+		Assert.assertEquals(allExercises.get(0).showInfo(),wp.showInfo());
 	
 	}
 	
@@ -117,12 +117,12 @@ public class CurrentWorkoutServiceTestWithContext extends ExerciseAbility{
 		//then
 		List<WorkoutPice> allExercises = currentService.getList();
 		
-		Assert.assertEquals(allExercises.get(0).getInfo()
-				,new ExerciseElement(threeExercises.get(0),firstSeries, firstRepetitions).getInfo());
-		Assert.assertEquals(allExercises.get(1).getInfo()
-				,new ExerciseElement(threeExercises.get(1),secondSeries, secondRepetitions).getInfo());
-		Assert.assertEquals(allExercises.get(2).getInfo()
-				,new ExerciseElement(threeExercises.get(2),thirdSeries, thirdRepetitions).getInfo());	
+		Assert.assertEquals(allExercises.get(0).showInfo()
+				,new ExerciseElement(threeExercises.get(0),firstSeries, firstRepetitions).showInfo());
+		Assert.assertEquals(allExercises.get(1).showInfo()
+				,new ExerciseElement(threeExercises.get(1),secondSeries, secondRepetitions).showInfo());
+		Assert.assertEquals(allExercises.get(2).showInfo()
+				,new ExerciseElement(threeExercises.get(2),thirdSeries, thirdRepetitions).showInfo());	
 	}
 	 
 	@Test
@@ -135,7 +135,7 @@ public class CurrentWorkoutServiceTestWithContext extends ExerciseAbility{
 		//when
 		currentService.replaceByExerciseAtIndex(threeExercises.get(1).getId(), 0, ee.getSeries(), ee.getRepetitions());
 		//then
-		Assert.assertEquals(CurrentWorkout.workout.get(0).getInfo(),ee.getInfo()); 
+		Assert.assertEquals(CurrentWorkout.workout.get(0).showInfo(),ee.showInfo()); 
 		
 	}
 	

@@ -133,7 +133,7 @@ public class ExerciseElement implements WorkoutPice{
 		return true;
 	}
 	@Override
-	public String getInfo() {
+	public String showInfo() {
 			
 		return exerciseGroupName+
 		exerciseDirectName+

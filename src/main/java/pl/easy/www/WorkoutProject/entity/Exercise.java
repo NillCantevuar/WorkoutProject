@@ -180,7 +180,7 @@ public class Exercise implements WorkoutPice {
 	}
 
 	@Override
-	public String getInfo() {
+	public String showInfo() {
 		
 		return exerciseGroupName+
 		exerciseDirectName+
