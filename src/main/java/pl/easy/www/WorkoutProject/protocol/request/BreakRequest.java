@@ -2,7 +2,7 @@ package pl.easy.www.WorkoutProject.protocol.request;
 
 public class BreakRequest {
 	
-	int duration;
+	private int duration;
 
 	public int getDuration() {
 		return duration;
@@ -15,6 +15,10 @@ public class BreakRequest {
 	public BreakRequest(int duration) {
 	
 		this.duration = duration;
+	}
+
+	public BreakRequest() {
+	
 	}
 	
 	

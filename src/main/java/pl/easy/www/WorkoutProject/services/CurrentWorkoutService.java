@@ -95,9 +95,9 @@ public class CurrentWorkoutService {
 				volume.getRepetitions()));
 	}
 	
-	public void replaceByExerciseAtIndex(int id,int currId,int series,int repetitions) {
+	public void replaceByExerciseAtIndex(int idDB,int currId,int series,int repetitions) {
 		
-		Exercise exercise =exerciseService.giveById(id);
+		Exercise exercise =exerciseService.giveById(idDB);
 		
 		CurrentWorkout.workout.set(currId, new ExerciseElement(
 				exercise.getExerciseGroupName(),
@@ -110,10 +110,22 @@ public class CurrentWorkoutService {
 		
 		
 	}
-	
-	public void replaceByBreakAtIndex(BreakRequest request, int index) {
+public void replaceByExerciseAtIndex(int idDB,int currId,VolumeRequest volumeRequest) {
 		
-		CurrentWorkout.workout.set(index, new BreakElement(request.getDuration()));
+		Exercise exercise =exerciseService.giveById(idDB);
+		
+		CurrentWorkout.workout.set(currId, new ExerciseElement(
+				exercise.getExerciseGroupName(),
+				exercise.getExerciseDirectName(),
+				exercise.getMuscleGroupName(),
+				exercise.getMuscleDirectName(),
+				volumeRequest.getSeries(),
+				volumeRequest.getRepetitions()));
+	}
+	
+	public void replaceByBreakAtIndex(int duration, int index) {
+		
+		CurrentWorkout.workout.set(index, new BreakElement(duration));
 	}
 	
 	

@@ -227,7 +227,7 @@ public class CurrentWorkoutServiceTest extends CurrentWorkoutAbility{
 		BreakRequest breakRequest = generateSingleDifferentBreakRequest();
 		BreakElement expected = BreakMapper.map(breakRequest);
 		//when
-		currentWorkoutService.replaceByBreakAtIndex(breakRequest, index);
+		currentWorkoutService.replaceByBreakAtIndex(breakRequest.getDuration(), index);
 		//then
 		Assert.assertEquals(CurrentWorkout.workout.get(index),expected); 
 	}
@@ -240,7 +240,7 @@ public class CurrentWorkoutServiceTest extends CurrentWorkoutAbility{
 		BreakRequest breakRequest = generateSingleDifferentBreakRequest();
 		BreakElement expected = BreakMapper.map(generateSingleBreakRequest());
 		//when
-		currentWorkoutService.replaceByBreakAtIndex(breakRequest, index);
+		currentWorkoutService.replaceByBreakAtIndex(breakRequest.getDuration(), index);
 		//then
 		Assert.assertNotEquals(CurrentWorkout.workout.get(index),expected); 
 	}
@@ -253,7 +253,7 @@ public class CurrentWorkoutServiceTest extends CurrentWorkoutAbility{
 		BreakRequest breakRequest = generateSingleDifferentBreakRequest();
 		BreakElement expected = BreakMapper.map(breakRequest);
 		//when
-		currentWorkoutService.replaceByBreakAtIndex(breakRequest, index);
+		currentWorkoutService.replaceByBreakAtIndex(breakRequest.getDuration(), index);
 		//then
 		Assert.assertEquals(CurrentWorkout.workout.get(index),expected); 
 	}

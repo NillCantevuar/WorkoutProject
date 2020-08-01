@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,51 +37,54 @@ public class CurrentWorkoutController {
 		return service.getList();
 	}
 	
-	@PostMapping("/addExercise/complete")
-	public void addExercise (@RequestBody CompleteRequest request) {
-		
-		service.addExercise(request);
+//	@PostMapping("/addExercise/complete")
+//	public void addExercise (@RequestBody CompleteRequest request) {
+//		service.addExercise(request);
+//	}
+	
+	@PostMapping("/addExercise/param/{idDB}")
+	public void addExercise(@PathVariable int idDB,@RequestParam int series,@RequestParam int repetitions) {
+			service.addExercise(idDB, series, repetitions);
+				
 	}
-	@PostMapping("/addExercise/param/{id}")
-	public void addExercise(@PathVariable int id,@RequestParam int series,@RequestParam int repetitions) {
-		
-		
-		
-	}
-	@PostMapping("/addExercise/volume/{id}")
-	public void addExercise(@PathVariable int id,@RequestBody VolumeRequest volumeRequest) {
-		
-		
+	@PostMapping("/addExercise/volume/{idDB}")
+	public void addExercise(@PathVariable int idDB,@RequestBody VolumeRequest volumeRequest) {
+		service.addExercise(idDB, volumeRequest);
 	}
 	
-	@PostMapping(value ="/addBreak/complete")
+	@PostMapping("/addBreak/complete")
 	public void addBreak (@RequestBody BreakRequest request) {
 		service.addBreak(request);
 	}
 	
 	@PostMapping("/addBreak/numeric")
-	public void addBreak (@RequestParam int id) {
-		
+	public void addBreak (@RequestParam int duration) {
+		service.addBreak(duration);
 	}
 	
-	@PostMapping (value ="/replaceByExercise")
-	public void replaceByExerciseAtIndex(@RequestBody CompleteRequest request, int index){
-		service.replaceByExerciseAtIndex(request, index);	
+	@PostMapping ("/replaceByExerciseParams/{current}")
+	public void replaceByExerciseAtIndex(@PathVariable int current,@RequestParam int dbIndex,@RequestParam int series, @RequestParam int repetitions){
+		service.replaceByExerciseAtIndex(dbIndex,current,series,repetitions);	
 	}
 	
-	@PostMapping ("/replaceByExercise/{current}")
-	public void replaceByExerciseAtIndex(@PathVariable int current,@RequestParam int dbIndex) {
-		
+	@PostMapping ("/replaceByExerciseVolume/{current}")
+	public void replaceByExerciseAtVolume(@PathVariable int current,@RequestParam int dbIndex,@RequestBody VolumeRequest volumeRequest) {
+		service.replaceByExerciseAtIndex(dbIndex, current, volumeRequest);
 	}
 	
-	@PostMapping (value ="/replaceByBreak")
-	public void replaceByBreakAtIndex(@RequestBody BreakRequest request,@RequestParam int index) {
-		service.replaceByBreakAtIndex(request,index);
+	
+	@PostMapping (value ="/replaceByBreak/Request/{current}")
+	public void replaceByBreakAtIndex(@RequestBody BreakRequest request,@PathVariable int current) {
+		service.replaceByBreakAtIndex(request.getDuration(),current);
 	}
 	
-	@PostMapping ("/replaceByBreak/{index}")
-	public void replaceByBreakAtIndex(@PathVariable int index,@RequestParam int duration) {
-		
+	@PostMapping ("/replaceByBreak/Duration/{current}")
+	public void replaceByBreakAtIndex(@PathVariable int current,@RequestParam int duration) {
+		service.replaceByBreakAtIndex(duration,current);
+	}
+	@DeleteMapping("/delete/{current}")
+	public void delete(@PathVariable int current) {
+		service.delete(current);
 	}
 	
 	

@@ -53,6 +53,7 @@ public class ExerciseService {
 	 
 	public void clearDB() {
 		exerciseRepository.deleteAll();
+		
 	}
 				
 	

@@ -35,8 +35,14 @@
 	-replace by exercise przyjmujacy dwa id, pobierra za pomoca drugiego(?) z exercises i zastepuje stare (TP)
 	
 	-break przyjmujacy inta(TP)
-	
+
+16. Wszytskier mozliwe przypadki dodawania exericse i break 
+
+17. Dodawanie bezposredni do exercisow do current automatycznie dodaje do DB
+
+18. jak wyzerowac indexy w bazie danych h2 w jednej sesji
 	
 //////
 
-Obecnie pisze metody w Cur controler do nowych add
+Obecnie pisze
+	test do replace exercise- cos z id i optionalem bna poziome repository
