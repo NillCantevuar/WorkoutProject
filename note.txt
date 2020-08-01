@@ -40,7 +40,9 @@
 
 17. Dodawanie bezposredni do exercisow do current automatycznie dodaje do DB
 
-18. jak wyzerowac indexy w bazie danych h2 w jednej sesji
+18. jak wyzerowac indexy w bazie danych h2 w jednej sesji (@DirtiestContext)
+
+19. przeniesc test kontrolera do osobnego pakietu
 	
 //////
 

@@ -21,6 +21,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.annotation.DirtiesContext.MethodMode;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -94,7 +96,7 @@ public class CurrentWorkoutControllerTest extends CurrentWorkoutAbility{
 //		WorkoutPice element =  CurrentWorkout.workout.get(0);
 //		assertEquals(expectedElement.showInfo() ,element.showInfo());
 //	}
-	
+	@DirtiesContext(methodMode = MethodMode.AFTER_METHOD)
 	@Test
 	public void should_add_exercise_using_id_leading_to_db_and_params() throws Exception {
 		//given
@@ -111,6 +113,7 @@ public class CurrentWorkoutControllerTest extends CurrentWorkoutAbility{
 		WorkoutPice resoultElement = CurrentWorkout.workout.get(0);
 		assertEquals(expectedElement.showInfo(), resoultElement.showInfo());
 	}
+	@DirtiesContext(methodMode = MethodMode.AFTER_METHOD)
 	@Test
 	public void should_add_exercise_using_id_leading_to_db_and_volume_request() throws Exception {
 		//given
@@ -202,6 +205,7 @@ public class CurrentWorkoutControllerTest extends CurrentWorkoutAbility{
 		//then
 		assertThrows(IndexOutOfBoundsException.class, () -> CurrentWorkout.workout.get(currIndex));
 	}
+	@DirtiesContext(methodMode = MethodMode.AFTER_METHOD)
 	@Test
 	public void should_replace_by_exercise_using_params() throws Exception {
 		//given
@@ -215,7 +219,7 @@ public class CurrentWorkoutControllerTest extends CurrentWorkoutAbility{
 		CurrentWorkout.workout.add(currIndex,exerciseElement);
 		//when
 		mockMvc.perform(post("/api/currentWorkout/replaceByExerciseParams/"+String.valueOf(currIndex))
-				.param("dbIndex", "3")
+				.param("dbIndex", "2")
 				.param("repetitions", String.valueOf(repetitions))
 				.param("series", String.valueOf(series)))
 			.andDo(print())
@@ -224,7 +228,7 @@ public class CurrentWorkoutControllerTest extends CurrentWorkoutAbility{
 		WorkoutPice resultElement =  CurrentWorkout.workout.get(currIndex);
 		assertEquals(expectedElement.showInfo(), resultElement.showInfo());
 	}
-	
+	@DirtiesContext(methodMode = MethodMode.AFTER_METHOD)
 	@Test
 	public void should_replace_by_exercise_using_volume() throws Exception {
 		//given
@@ -238,7 +242,7 @@ public class CurrentWorkoutControllerTest extends CurrentWorkoutAbility{
 		CurrentWorkout.workout.add(currIndex,exerciseElement);
 		//when
 		mockMvc.perform(post("/api/currentWorkout/replaceByExerciseVolume/"+String.valueOf(currIndex))
-				.param("dbIndex", "6")
+				.param("dbIndex", "2")
 				.contentType("application/json")
 				.content(jsonRequest))
 			.andDo(print())
