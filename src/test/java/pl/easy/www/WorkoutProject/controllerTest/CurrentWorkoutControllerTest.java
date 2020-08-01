@@ -1,4 +1,4 @@
-package pl.easy.www.WorkoutProject.servicesTest;
+package pl.easy.www.WorkoutProject.controllerTest;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -228,6 +228,7 @@ public class CurrentWorkoutControllerTest extends CurrentWorkoutAbility{
 		WorkoutPice resultElement =  CurrentWorkout.workout.get(currIndex);
 		assertEquals(expectedElement.showInfo(), resultElement.showInfo());
 	}
+	
 	@DirtiesContext(methodMode = MethodMode.AFTER_METHOD)
 	@Test
 	public void should_replace_by_exercise_using_volume() throws Exception {

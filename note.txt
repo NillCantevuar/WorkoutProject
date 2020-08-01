@@ -1,50 +1,14 @@
 
-1. najwpier w postmanie jescze raz to wszytko przetestować (D)
-
 4. pomyśleć o veryfikatorach (W)
 
 5. zapisywanie do pliku na kompie(do druku) (T)
 
 10. problem z generowanie mtego samego id (?)
 
-11. przetestowac current workout ca pomoca postmana (TP)
-
-12. jak powinno to dzialac, do current powinienem dodawac po id z exercise list ? (D)
-
-13. dodac nowe endpointy (W)
-
-	-add exercise przyjmujacy jako path variable id z exercise_db oraz dwa inty ser i rep (W)
-	
-	-add exercise przyjmujacy jak path varialbel id z exercise oraz Volume Requesta (W)
-	
-	-replaceByExercise przyjmujacy dwa razy path variable jako stareZCurr/noweZExercises (W)
-	
-	-replaceByBreak przyjmujacy  pathvariavle oraz requestPram (W)
-	
-	-add break przyjmujacy path variable inta (W)
-	
-	
-15 dodac do servisu (W)
-
-	-exercise service ?	(TP)
-	
-	-add przyjmujacy id, pobranie za jego pomoca z exercises i dodanie do curr (TP)
-	
-	-add przyjmiujacy id do exercisers oraz volumeRequesta (TP)
-	
-	-replace by exercise przyjmujacy dwa id, pobierra za pomoca drugiego(?) z exercises i zastepuje stare (TP)
-	
-	-break przyjmujacy inta(TP)
-
-16. Wszytskier mozliwe przypadki dodawania exericse i break 
-
 17. Dodawanie bezposredni do exercisow do current automatycznie dodaje do DB
 
-18. jak wyzerowac indexy w bazie danych h2 w jednej sesji (@DirtiestContext)
-
-19. przeniesc test kontrolera do osobnego pakietu
 	
 //////
 
 Obecnie pisze
-	test do replace exercise- cos z id i optionalem bna poziome repository
+	test do exercise controler
