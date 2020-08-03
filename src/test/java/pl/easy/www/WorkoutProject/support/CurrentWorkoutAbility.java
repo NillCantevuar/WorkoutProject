@@ -2,6 +2,8 @@ package pl.easy.www.WorkoutProject.support;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import pl.easy.www.WorkoutProject.currentWorkout.CurrentWorkout;
+import pl.easy.www.WorkoutProject.currentWorkout.ExerciseElement;
 import pl.easy.www.WorkoutProject.protocol.request.BreakRequest;
 import pl.easy.www.WorkoutProject.protocol.request.CompleteRequest;
 import pl.easy.www.WorkoutProject.protocol.request.ExerciseRequest;
@@ -17,15 +19,16 @@ public class CurrentWorkoutAbility extends ExerciseAbility{
 	public void prepereNotEmptyList() {
 		
 		CurrentWorkoutService service = new CurrentWorkoutService();
-		BreakRequest request= generateSingleBreakRequest();
+		BreakRequest bRequest= generateSingleBreakRequest();
 		CompleteRequest eRequest = generateSingleCompleteRequest();
+		ExerciseElement exerciseElement = new ExerciseElement(eRequest);
 		
-		service.addBreak(request);
-		service.addExercise(eRequest);
-		service.addBreak(request);
-		service.addExercise(eRequest);
-		service.addBreak(request);
-		service.addExercise(eRequest);		
+		service.addBreak(bRequest.getDuration());
+		CurrentWorkout.workout.add(exerciseElement);
+		service.addBreak(bRequest.getDuration());
+		CurrentWorkout.workout.add(exerciseElement);
+		service.addBreak(bRequest.getDuration());
+		CurrentWorkout.workout.add(exerciseElement);	
 	}
 
 	public ExerciseRequest generateSingleExerciseRequest() {

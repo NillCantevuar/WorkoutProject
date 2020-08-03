@@ -41,16 +41,12 @@ public class CurrentWorkoutService {
 	
 	public void addExercise(CompleteRequest request) {
 		
-		ExerciseRequest exercise = request.getExerciseRequest();
+		ExerciseRequest exerciseR = request.getExerciseRequest();
 		VolumeRequest volume = request.getVolumeRequest();
 		
-		CurrentWorkout.workout.add(new ExerciseElement(
-				exercise.getExerciseGroupName(),
-				exercise.getExerciseDirectName(),
-				exercise.getMuscleGroupName(),
-				exercise.getMuscleDirectName(),
-				volume.getSeries(),
-				volume.getRepetitions())); 
+		Exercise addedExercise = exerciseService.add(new Exercise(exerciseR));
+		ExerciseElement exerciseElement = new ExerciseElement(addedExercise,volume.getSeries(),volume.getRepetitions());
+		CurrentWorkout.workout.add(exerciseElement);
 			
 	}
 	
@@ -80,20 +76,7 @@ public class CurrentWorkoutService {
 	public void delete(int index) {
 		CurrentWorkout.workout.remove(index);
 	}
-	
-	public void replaceByExerciseAtIndex(CompleteRequest request,int index) {
-		
-		ExerciseRequest exercise = request.getExerciseRequest();
-		VolumeRequest volume = request.getVolumeRequest();
-		
-		CurrentWorkout.workout.set(index, new ExerciseElement(
-				exercise.getExerciseGroupName(),
-				exercise.getExerciseDirectName(),
-				exercise.getMuscleGroupName(),
-				exercise.getMuscleDirectName(),
-				volume.getSeries(),
-				volume.getRepetitions()));
-	}
+
 	
 	public void replaceByExerciseAtIndex(int idDB,int currId,int series,int repetitions) {
 		
@@ -110,7 +93,7 @@ public class CurrentWorkoutService {
 		
 		
 	}
-public void replaceByExerciseAtIndex(int idDB,int currId,VolumeRequest volumeRequest) {
+	public void replaceByExerciseAtIndex(int idDB,int currId,VolumeRequest volumeRequest) {
 		
 		Exercise exercise =exerciseService.giveById(idDB);
 		
@@ -121,6 +104,17 @@ public void replaceByExerciseAtIndex(int idDB,int currId,VolumeRequest volumeReq
 				exercise.getMuscleDirectName(),
 				volumeRequest.getSeries(),
 				volumeRequest.getRepetitions()));
+	}
+	public void replaceByExerciseRequest(CompleteRequest completeRequest,int currId) {
+		Exercise addedExercise = exerciseService.add(new Exercise(completeRequest.getExerciseRequest()));
+		
+		CurrentWorkout.workout.set(currId, new ExerciseElement(
+				addedExercise.getExerciseGroupName(),
+				addedExercise.getExerciseDirectName(),
+				addedExercise.getMuscleGroupName(),
+				addedExercise.getMuscleDirectName(),
+				completeRequest.getVolumeRequest().getSeries(),
+				completeRequest.getVolumeRequest().getRepetitions()));
 	}
 	
 	public void replaceByBreakAtIndex(int duration, int index) {

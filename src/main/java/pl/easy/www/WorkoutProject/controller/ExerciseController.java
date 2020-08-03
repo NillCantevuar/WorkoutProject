@@ -42,7 +42,6 @@ public class ExerciseController {
 						request.getMuscleDirectName()
 						)));		
 	}
-
 	@GetMapping
 	public @ResponseBody List<ExerciseResponse> getAllExercises() {
 		
@@ -72,16 +71,9 @@ public class ExerciseController {
 		
 	}
 	
-	@DeleteMapping(value = "/delete")
-	public void delete(@RequestParam int id) {	
+	@DeleteMapping(value = "/delete/{id}")
+	public void delete(@PathVariable int id) {	
 		service.delete(id);
 	}
 	
-	
-	
-	
-	// wyciagniecie pojedynczego cwiczenie
-	
-	
-
 }

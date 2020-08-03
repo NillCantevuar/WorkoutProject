@@ -51,6 +51,10 @@ public class CurrentWorkoutController {
 	public void addExercise(@PathVariable int idDB,@RequestBody VolumeRequest volumeRequest) {
 		service.addExercise(idDB, volumeRequest);
 	}
+	@PostMapping("/addExercise/complete")
+	public void addExercise(@RequestBody CompleteRequest completeRequest) {
+		service.addExercise(completeRequest);
+	}
 	
 	@PostMapping("/addBreak/complete")
 	public void addBreak (@RequestBody BreakRequest request) {
@@ -87,11 +91,15 @@ public class CurrentWorkoutController {
 		service.delete(current);
 	}
 	
-	
 	@PostMapping (value="/saveWorkout")	
 	public void saveWorkout() {
 		
 		service.saveWorkout();
+	}
+	
+	@DeleteMapping("/clear")
+	public void clear() {
+		service.clearCurrentWorkout();
 	}
 	
 

@@ -252,5 +252,55 @@ public class CurrentWorkoutControllerTest extends CurrentWorkoutAbility{
 		WorkoutPice resultElement =  CurrentWorkout.workout.get(currIndex);
 		assertEquals(expectedElement.showInfo(), resultElement.showInfo());
 	}
+	@DirtiesContext(methodMode = MethodMode.AFTER_METHOD)
+	@Test
+	public void should_clear_current_workout_list() throws Exception {
+		//given
+		prepereNotEmptyList();
+		//when
+		mockMvc.perform(delete("/api/currentWorkout/clear")).andExpect(status().isOk());
+		//then
+		assertEquals(CurrentWorkout.workout.size(), 0);
+	}
+	
+	@DirtiesContext(methodMode = MethodMode.AFTER_METHOD)
+	@Test
+	public void should_add_exercise_to_current_and_db_by_request() throws Exception {
+		//given
+		CompleteRequest completeRequest = generateSingleCompleteRequest();
+		ExerciseElement expectedElement = new ExerciseElement(completeRequest);
+		Exercise expectedExercise = new Exercise(completeRequest.getExerciseRequest());
+		String jsonRequest = objectMapper.writeValueAsString(completeRequest);
+		//when
+		mockMvc.perform(post("/api/currentWorkout/addExercise/complete")
+				.contentType("application/json")
+				.content(jsonRequest))
+			.andExpect(status().isOk());
+		//then
+	   List<Exercise> exercisesFromDb =	exerciseService.getAllExercises();
+	   List<WorkoutPice> currentWorkoutList = currentService.getList();
+	   
+	   assertEquals(expectedExercise.showInfo(), exercisesFromDb.get(0).showInfo());
+	   assertEquals(expectedElement.showInfo(), currentWorkoutList.get(0).showInfo());
+	}
+	
+	@DirtiesContext(methodMode = MethodMode.AFTER_METHOD)
+	@Test
+	public void should_add_exercise_to_current_by_request_and_replace_at_index () throws Exception {
+	//given
+	CompleteRequest completeRequest = generateSingleCompleteRequest();
+	String jsonRequest = objectMapper.writeValueAsString(completeRequest);
+	//when
+	mockMvc.perform(patch("/api/currentWorkout/replaceByExerciseComplete")
+			.contentType("application/json")
+			.content(jsonRequest)).andExpect(status()
+					.isOk());
+	//then
+	
+	//czy dodało sie do DB
+	//czy podmieniło na indexie w current Workout
+	}
+	
+	
 
 }

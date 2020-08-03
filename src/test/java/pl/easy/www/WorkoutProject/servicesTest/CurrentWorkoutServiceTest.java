@@ -1,5 +1,7 @@
 package pl.easy.www.WorkoutProject.servicesTest;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.ArrayList;
 
 
@@ -37,50 +39,12 @@ public class CurrentWorkoutServiceTest extends CurrentWorkoutAbility{
 	
 	CurrentWorkoutService currentWorkoutService = new CurrentWorkoutService();
 	
+	
 	@Before
 	public void clear() {
 		CurrentWorkout.workout = new ArrayList<>();
 	}
 	
-	
-	@Test
-	public void should_add_one_exercise_equal_size () {
-		//given
-		
-		CompleteRequest completeRequest = generateSingleCompleteRequest();
-		//when
-		currentWorkoutService.addExercise(completeRequest);
-		//then
-		Assert.assertEquals(CurrentWorkout.workout.size(),1);
-	
-		
-	}
-	
-	@Test
-	public void should_add_one_exercise_equal_exercise () {
-		//given	
-		CompleteRequest completeRequest = generateSingleCompleteRequest();
-		ExerciseElement element = ExerciseMapper.eRequestToEElement(completeRequest);
-		//when
-		currentWorkoutService.addExercise(completeRequest);
-		//then
-		Assert.assertEquals(CurrentWorkout.workout.get(0),element);
-		
-	}
-	
-	
-	@Test
-	public void should_add_multiple_exercises_equal_size () {
-		//given
-		CompleteRequest completeRequest = generateSingleCompleteRequest();
-		//when
-		currentWorkoutService.addExercise(completeRequest);
-		currentWorkoutService.addExercise(completeRequest);
-		currentWorkoutService.addExercise(completeRequest);
-		//then
-		Assert.assertEquals(CurrentWorkout.workout.size(),3);
-		
-	}
 	
 	@Test
 	public void should_add_one_break_by_object_equal_size () {
@@ -153,18 +117,18 @@ public class CurrentWorkoutServiceTest extends CurrentWorkoutAbility{
 		
 	}
 	
-	@Test
-	public void should_add_one_break_and_exercise_equal_size () {
-		//given
-		BreakRequest request= generateSingleBreakRequest();
-		CompleteRequest eRequest = generateSingleCompleteRequest();
-		//when
-		currentWorkoutService.addBreak(request);
-		currentWorkoutService.addExercise(eRequest);
-		//then
-		Assert.assertEquals(CurrentWorkout.workout.size(),2);
-		
-	}
+//	@Test
+//	public void should_add_one_break_and_exercise_equal_size () {
+//		//given
+//		BreakRequest request= generateSingleBreakRequest();
+//		CompleteRequest eRequest = generateSingleCompleteRequest();
+//		//when
+//		currentWorkoutService.addBreak(request);
+//		currentWorkoutService.addExercise(eRequest);
+//		//then
+//		Assert.assertEquals(CurrentWorkout.workout.size(),2);
+//		
+//	}
 	
 	@Test
 	public void sholud_delete_one_exercise_at_index() {
@@ -177,47 +141,6 @@ public class CurrentWorkoutServiceTest extends CurrentWorkoutAbility{
 		Assert.assertEquals(CurrentWorkout.workout.size(), 5);
 	}
 	
-	@Test
-	public void should_replce_exercise_by_exercise_equal_exercise() {
-		//given
-		prepereNotEmptyList();
-		int index = 1;
-		CompleteRequest completeRequest =generateSingleDifferentCompleteRequest();
-		ExerciseElement expected = ExerciseMapper.eRequestToEElement(completeRequest);
-		//when
-		currentWorkoutService.replaceByExerciseAtIndex(completeRequest, index);
-		//then
-		Assert.assertEquals(CurrentWorkout.workout.get(index),expected); 
-		
-	}
-	
-	@Test
-	public void should_replce_exercise_by_exercise_notEqual_old_exercise() {
-		//given
-		prepereNotEmptyList();
-		int index = 1;
-		CompleteRequest completeRequest =generateSingleDifferentCompleteRequest();
-		ExerciseElement expected = ExerciseMapper.eRequestToEElement(generateSingleCompleteRequest());
-		//when
-		currentWorkoutService.replaceByExerciseAtIndex(completeRequest, index);
-		//then
-		Assert.assertNotEquals(CurrentWorkout.workout.get(index),expected); 
-		
-	}
-	
-	@Test
-	public void should_replce_break_by_exercise_equal__exercise() {
-		//given
-		prepereNotEmptyList();
-		int index = 0;
-		CompleteRequest completeRequest =generateSingleDifferentCompleteRequest();
-		ExerciseElement expected = ExerciseMapper.eRequestToEElement(completeRequest);
-		//when
-		currentWorkoutService.replaceByExerciseAtIndex(completeRequest, index);
-		//then
-		Assert.assertEquals(CurrentWorkout.workout.get(index),expected); 
-	
-	}
 	
 	@Test
 	public void should_replce_break_by_break_equal_break() {
@@ -296,6 +219,20 @@ public class CurrentWorkoutServiceTest extends CurrentWorkoutAbility{
 		String text = currentWorkoutService.saveWorkout();
 		currentWorkoutService.saveAtDesktop(text);
 	}
+	
+	@Test
+	public void should_clear_current_workout() {
+		//given
+		prepereNotEmptyList();
+		assertEquals(6, CurrentWorkout.workout.size());
+		//when
+		currentWorkoutService.clearCurrentWorkout();
+		//then
+		assertEquals(0, CurrentWorkout.workout.size());
+		
+	}
+	
+	
 	
 
 }

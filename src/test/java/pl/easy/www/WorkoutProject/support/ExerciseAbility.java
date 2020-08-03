@@ -6,6 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import pl.easy.www.WorkoutProject.entity.Exercise;
+import pl.easy.www.WorkoutProject.protocol.request.CompleteRequest;
+import pl.easy.www.WorkoutProject.protocol.request.ExerciseRequest;
+import pl.easy.www.WorkoutProject.protocol.request.VolumeRequest;
 import pl.easy.www.WorkoutProject.services.ExerciseService;
 
 public class ExerciseAbility {
@@ -53,6 +56,26 @@ public class ExerciseAbility {
 		
 		return exerciseService.add(new Exercise("Podciaganie","Nachwytem","Plecy","Szerokie"));
 		
+	}
+	
+	public CompleteRequest generateSingleCompleteRequest() {
+		return new CompleteRequest(
+				generateSingleExerciseRequest(),
+				generateSingleVolumeRequest());
+	}
+	public VolumeRequest generateSingleVolumeRequest() {
+		return  new VolumeRequest(3, 10);
+		
+	}
+	public ExerciseRequest generateSingleExerciseRequest() {
+		ExerciseRequest exerciseRequest = new ExerciseRequest();
+		
+		exerciseRequest.setExerciseGroupName("Dipy");
+		exerciseRequest.setExerciseDirectName("Na drazku");
+		exerciseRequest.setMuscleGroupName("rece");
+		exerciseRequest.setMuscleDirectName("triceps");
+				
+		return exerciseRequest;	
 	}
 
 }

@@ -5,10 +5,17 @@
 
 10. problem z generowanie mtego samego id (?)
 
-17. Dodawanie bezposredni do exercisow do current automatycznie dodaje do DB
+ Dodawanie bezposredni do exercisow do current automatycznie dodaje do DB
+ 
+ update bezposredni  exercisow do current automatycznie dodaje do DB
+ -test do servisu D
+ -metoda w servisie D
+ -test do kontrolera
+ -endpoint w kontrolerze
+
 
 	
 //////
-
-Obecnie pisze
-	test do exercise controler
+Przejrzec cały projekt bo zaczynam sie gubić
+Małe reviev co trzeba dodac co usunac 
+Gdzie są nieścisłości

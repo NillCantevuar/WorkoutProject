@@ -9,6 +9,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import pl.easy.www.WorkoutProject.interfaces.WorkoutPice;
+import pl.easy.www.WorkoutProject.protocol.request.ExerciseRequest;
 
 
 @Entity
@@ -24,7 +25,14 @@ public class Exercise implements WorkoutPice {
 		this.exerciseDirectName =exerciseDirectName;
 		this.muscleDirectName = muscleDirectName;
 		this.muscleGroupName = musculeGroupName;
-		id = null;
+		
+	}
+	
+	public Exercise (ExerciseRequest request) {
+		this.exerciseGroupName = request.getExerciseGroupName();
+		this.exerciseDirectName =request.getExerciseDirectName();
+		this.muscleDirectName = request.getMuscleDirectName();
+		this.muscleGroupName = request.getMuscleGroupName();
 	}
 
 	
@@ -45,30 +53,6 @@ public class Exercise implements WorkoutPice {
 	@Column(name = "muscle_direct_name")
 	private String muscleDirectName;
 	
-	@Transient
-	private int reps;
-	
-	@Transient
-	private int series;
-	
-	
-
-	public int getReps() {
-		return reps;
-	}
-
-	public void setReps(int reps) {
-		this.reps = reps;
-	}
-
-	public int getSeries() {
-		return series;
-	}
-
-	public void setSeries(int series) {
-		this.series = series;
-	}
-
 	public Integer getId() {
 		return id;
 	}
@@ -117,14 +101,8 @@ public class Exercise implements WorkoutPice {
 				+ " " 
 				+ muscleGroupName 
 				+ " " 
-				+ muscleDirectName
-				+ "r: " 
-				+reps
-				+"/"
-				+"s: "
-				+series
-				+" "  
-				+"\\/";
+				+ muscleDirectName;
+
 	}
 
 	@Override
@@ -136,8 +114,6 @@ public class Exercise implements WorkoutPice {
 		result = prime * result + id;
 		result = prime * result + ((muscleDirectName == null) ? 0 : muscleDirectName.hashCode());
 		result = prime * result + ((muscleGroupName == null) ? 0 : muscleGroupName.hashCode());
-		result = prime * result + reps;
-		result = prime * result + series;
 		return result;
 	}
 
@@ -172,10 +148,7 @@ public class Exercise implements WorkoutPice {
 				return false;
 		} else if (!muscleGroupName.equals(other.muscleGroupName))
 			return false;
-		if (reps != other.reps)
-			return false;
-		if (series != other.series)
-			return false;
+		
 		return true;
 	}
 
