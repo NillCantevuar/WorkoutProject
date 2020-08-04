@@ -42,6 +42,7 @@ public class CurrentWorkoutServiceTestWithContext extends ExerciseAbility{
 		exerciseService.clearDB();
 		currentService.clearCurrentWorkout();
 	}
+	
 	@DirtiesContext(methodMode = MethodMode.AFTER_METHOD)
 	@Test
 	public void should_add_one_exercise_equal_size_from_DB () {

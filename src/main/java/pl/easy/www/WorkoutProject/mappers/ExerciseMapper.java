@@ -28,11 +28,9 @@ public class ExerciseMapper {
 	}
 	
 	public static List<ExerciseResponse> mapExerciseList(List<Exercise> inputList){
-		
 		List<ExerciseResponse> exerciseResponses = inputList.stream().map(
 				e -> ExerciseMapper.mapExercise(e))
 				.collect(Collectors.toList());
-		
 		return exerciseResponses;
 	}
 	

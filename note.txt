@@ -22,3 +22,15 @@ Gdzie są nieścisłości
 
 [CurrentWorkoutService]
 -vrakuje metody replace break z BreakRequest
+
+//////////////////////
+w current workout service
+ - metoda - zapisz trening do bazy danych
+
+w ready workout service
+	-metoda show list z numerkami
+	-metoda get workout po tym numerku
+	-metoda zapisz na dysku workout
+	-metoda zaladuj workout do current
+	
+	

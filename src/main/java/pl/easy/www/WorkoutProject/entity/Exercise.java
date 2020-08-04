@@ -6,7 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import pl.easy.www.WorkoutProject.interfaces.WorkoutPice;
 import pl.easy.www.WorkoutProject.protocol.request.ExerciseRequest;
@@ -15,6 +14,24 @@ import pl.easy.www.WorkoutProject.protocol.request.ExerciseRequest;
 @Entity
 @Table(name="exercises")
 public class Exercise implements WorkoutPice {
+	
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id")
+	private Integer id;
+	
+	@Column(name = "exercise_group_name")
+	private String exerciseGroupName;
+	
+	@Column(name = "exercise_direct_name")
+	private String exerciseDirectName;
+	
+	@Column(name = "muscle_group_name")
+	private String muscleGroupName;
+	
+	@Column(name = "muscle_direct_name")
+	private String muscleDirectName;
 	
 	public Exercise() {
 		
@@ -34,24 +51,6 @@ public class Exercise implements WorkoutPice {
 		this.muscleDirectName = request.getMuscleDirectName();
 		this.muscleGroupName = request.getMuscleGroupName();
 	}
-
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
-	private Integer id;
-	
-	@Column(name = "exercise_group_name")
-	private String exerciseGroupName;
-	
-	@Column(name = "exercise_direct_name")
-	private String exerciseDirectName;
-	
-	@Column(name = "muscle_group_name")
-	private String muscleGroupName;
-	
-	@Column(name = "muscle_direct_name")
-	private String muscleDirectName;
 	
 	public Integer getId() {
 		return id;
