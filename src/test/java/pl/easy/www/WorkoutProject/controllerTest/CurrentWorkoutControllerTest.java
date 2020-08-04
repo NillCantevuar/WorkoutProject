@@ -3,6 +3,7 @@ package pl.easy.www.WorkoutProject.controllerTest;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThrows;
+import static org.mockito.Matchers.contains;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
@@ -288,17 +289,20 @@ public class CurrentWorkoutControllerTest extends CurrentWorkoutAbility{
 	@Test
 	public void should_add_exercise_to_current_by_request_and_replace_at_index () throws Exception {
 	//given
+	CurrentWorkout.workout.add(new ExerciseElement(generateSingleDifferentCompleteRequest()));
 	CompleteRequest completeRequest = generateSingleCompleteRequest();
+	Exercise expectedExercise = new Exercise(completeRequest.getExerciseRequest());
+	ExerciseElement exerciseElement = new ExerciseElement(completeRequest);
 	String jsonRequest = objectMapper.writeValueAsString(completeRequest);
 	//when
-	mockMvc.perform(patch("/api/currentWorkout/replaceByExerciseComplete")
+	mockMvc.perform(patch("/api/currentWorkout/replaceByExerciseComplete/"+0)
 			.contentType("application/json")
 			.content(jsonRequest)).andExpect(status()
 					.isOk());
 	//then
-	
-	//czy dodało sie do DB
-	//czy podmieniło na indexie w current Workout
+	List<Exercise> exercisesFromDb = exerciseService.getAllExercises();
+	assertEquals(exercisesFromDb.get(0).showInfo(),expectedExercise.showInfo() );
+	assertEquals(exerciseElement.showInfo(), CurrentWorkout.workout.get(0).showInfo());
 	}
 	
 	

@@ -33,24 +33,19 @@ public class CurrentWorkoutController {
 	
 	@GetMapping
 	public @ResponseBody List<WorkoutPice> getCurrentWorkout(){
-		
 		return service.getList();
 	}
-	
-//	@PostMapping("/addExercise/complete")
-//	public void addExercise (@RequestBody CompleteRequest request) {
-//		service.addExercise(request);
-//	}
 	
 	@PostMapping("/addExercise/param/{idDB}")
 	public void addExercise(@PathVariable int idDB,@RequestParam int series,@RequestParam int repetitions) {
 			service.addExercise(idDB, series, repetitions);
-				
 	}
+	
 	@PostMapping("/addExercise/volume/{idDB}")
 	public void addExercise(@PathVariable int idDB,@RequestBody VolumeRequest volumeRequest) {
 		service.addExercise(idDB, volumeRequest);
 	}
+	
 	@PostMapping("/addExercise/complete")
 	public void addExercise(@RequestBody CompleteRequest completeRequest) {
 		service.addExercise(completeRequest);
@@ -76,8 +71,12 @@ public class CurrentWorkoutController {
 		service.replaceByExerciseAtIndex(dbIndex, current, volumeRequest);
 	}
 	
+	@PatchMapping("/replaceByExerciseComplete/{current}")
+	public void replaceByExerciseComplete(@PathVariable int current,@RequestBody CompleteRequest completeRequest) {
+		service.replaceByExerciseRequest(completeRequest, current);
+	}
 	
-	@PostMapping (value ="/replaceByBreak/Request/{current}")
+	@PostMapping ("/replaceByBreak/Request/{current}")
 	public void replaceByBreakAtIndex(@RequestBody BreakRequest request,@PathVariable int current) {
 		service.replaceByBreakAtIndex(request.getDuration(),current);
 	}
@@ -91,7 +90,7 @@ public class CurrentWorkoutController {
 		service.delete(current);
 	}
 	
-	@PostMapping (value="/saveWorkout")	
+	@PostMapping ("/saveWorkout")	
 	public void saveWorkout() {
 		
 		service.saveWorkout();

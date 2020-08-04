@@ -36,7 +36,6 @@ public class CurrentWorkoutService {
 				exerciseFromDB.getMuscleDirectName(),
 				series,
 				repetitions));
-		
 	}
 	
 	public void addExercise(CompleteRequest request) {
@@ -106,8 +105,7 @@ public class CurrentWorkoutService {
 				volumeRequest.getRepetitions()));
 	}
 	public void replaceByExerciseRequest(CompleteRequest completeRequest,int currId) {
-		Exercise addedExercise = exerciseService.add(new Exercise(completeRequest.getExerciseRequest()));
-		
+		Exercise addedExercise = exerciseService.add(new Exercise(completeRequest.getExerciseRequest()));	
 		CurrentWorkout.workout.set(currId, new ExerciseElement(
 				addedExercise.getExerciseGroupName(),
 				addedExercise.getExerciseDirectName(),
@@ -118,27 +116,19 @@ public class CurrentWorkoutService {
 	}
 	
 	public void replaceByBreakAtIndex(int duration, int index) {
-		
 		CurrentWorkout.workout.set(index, new BreakElement(duration));
 	}
-	
 	
 	public List<WorkoutPice> getList(){
 		return CurrentWorkout.workout;
 	} 
 	
 	public String saveWorkout () {
-		
 		StringBuilder sb = new StringBuilder();
-		
-		for (WorkoutPice workoutPice : CurrentWorkout.workout) {
-			
-			sb.append(workoutPice.toString());
-			
+		for (WorkoutPice workoutPice : CurrentWorkout.workout) {	
+			sb.append(workoutPice.toString());	
 		}
-		
 		return sb.toString();
-		
 	}
 	
 	public void saveAtDesktop(String workout) {
@@ -149,12 +139,9 @@ public class CurrentWorkoutService {
 			out.write(workout);
 			out.flush();
 			out.close();
-			
 		}catch (Exception e) {
 			e.getStackTrace();
 		}
-		
-		
 	}
 	public void clearCurrentWorkout() {
 		CurrentWorkout.workout.clear();

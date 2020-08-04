@@ -3,19 +3,22 @@
 
 5. zapisywanie do pliku na kompie(do druku) (T)
 
-10. problem z generowanie mtego samego id (?)
-
- Dodawanie bezposredni do exercisow do current automatycznie dodaje do DB
+- zapisywanie calych treningow do bazy danych po dacie
  
- update bezposredni  exercisow do current automatycznie dodaje do DB
- -test do servisu D
- -metoda w servisie D
- -test do kontrolera
- -endpoint w kontrolerze
-
-
-	
+ 
+ 	
 //////
 Przejrzec cały projekt bo zaczynam sie gubić
 Małe reviev co trzeba dodac co usunac 
 Gdzie są nieścisłości
+//////////////////////
+
+[CurrentWorkoutControler]
+-ujednolicenie nazw w current controller
+-zapisywanie treningu proszace o sciezke zapisania
+
+[ExerciseControler]
+-przeniesienie maperow do konstruktorow ?
+
+[CurrentWorkoutService]
+-vrakuje metody replace break z BreakRequest

@@ -31,9 +31,8 @@ public class ExerciseController {
 	@Autowired
 	private ExerciseService service;
 
-	@PostMapping(value = "/add")
+	@PostMapping("/add")
 	public ExerciseResponse add(@RequestBody ExerciseRequest request) {
-
 		return ExerciseMapper
 				.mapExercise(service.add(new Exercise(
 						request.getExerciseGroupName(),
@@ -42,24 +41,21 @@ public class ExerciseController {
 						request.getMuscleDirectName()
 						)));		
 	}
+	
 	@GetMapping
 	public @ResponseBody List<ExerciseResponse> getAllExercises() {
-		
 		return ExerciseMapper.mapExerciseList(
 				service.getAllExercises());
 	}
 	 
-	
-	@GetMapping(value = "/getById/{id}")
+	@GetMapping("/getById/{id}")
 	public @ResponseBody ExerciseResponse getExerciseById(@PathVariable int id) {
-		
 		return ExerciseMapper
 				.mapExercise(service.giveById(id));
 	}
 	
-	@PatchMapping(value = "/update/{id}")
+	@PatchMapping("/update/{id}")
 	public ExerciseResponse	update(@RequestBody ExerciseRequest request, @PathVariable int id){
-		
 		return ExerciseMapper
 				.mapExercise(service.update(new Exercise(
 						request.getExerciseGroupName(),
@@ -68,7 +64,6 @@ public class ExerciseController {
 						request.getMuscleDirectName()),
 						id
 						));		 
-		
 	}
 	
 	@DeleteMapping(value = "/delete/{id}")
