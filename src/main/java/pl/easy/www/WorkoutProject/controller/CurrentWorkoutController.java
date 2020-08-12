@@ -92,8 +92,7 @@ public class CurrentWorkoutController {
 	
 	@PostMapping ("/saveWorkout")	
 	public void saveWorkout() {
-		
-		service.saveWorkout();
+		service.saveAtDesktop(service.saveWorkout());
 	}
 	
 	@DeleteMapping("/clear")

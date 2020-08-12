@@ -4,7 +4,6 @@ package pl.easy.www.WorkoutProject.servicesTest;
 import static org.junit.Assert.assertEquals;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.Assert;
 import org.junit.Before;

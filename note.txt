@@ -1,16 +1,9 @@
 
-4. pomyśleć o veryfikatorach (W)
-
 5. zapisywanie do pliku na kompie(do druku) (T)
-
-- zapisywanie calych treningow do bazy danych po dacie
  
- 
+ -zrewidowac w testach gdfzdie naprawde potrzebuje ditrtestContext i w dokładnie jakiej fformie
  	
-//////
-Przejrzec cały projekt bo zaczynam sie gubić
-Małe reviev co trzeba dodac co usunac 
-Gdzie są nieścisłości
+ 	
 //////////////////////
 
 [CurrentWorkoutControler]
@@ -24,13 +17,10 @@ Gdzie są nieścisłości
 -vrakuje metody replace break z BreakRequest
 
 //////////////////////
-w current workout service
- - metoda - zapisz trening do bazy danych
 
 w ready workout service
-	-metoda show list z numerkami
-	-metoda get workout po tym numerku
-	-metoda zapisz na dysku workout
-	-metoda zaladuj workout do current
+	-metoda zaladuj workout do current z dysku (Optional)
+
 	
-	
+-Document Reader
+	-zmienic to stringa exercise 

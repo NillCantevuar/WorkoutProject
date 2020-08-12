@@ -22,7 +22,7 @@ public class ReadyWorkout {
 	@Column(name="creationdate")
 	private LocalDateTime creationDate;
 
-	@Column(name = "content")
+	@Column(name = "content",length = 100000)
 	private String content;
 
 	public ReadyWorkout() {

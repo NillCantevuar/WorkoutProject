@@ -1,16 +1,15 @@
 package pl.easy.www.WorkoutProject.services;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.catalina.startup.ClassLoaderFactory.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import pl.easy.www.WorkoutProject.entity.ReadyWorkout;
 import pl.easy.www.WorkoutProject.mappers.ReadyWorkoutMapper;
 import pl.easy.www.WorkoutProject.repository.ReadyWorkoutRepository;
 
+@Service
 public class ReadyWorkoutService {
 	
 	@Autowired
@@ -23,12 +22,20 @@ public class ReadyWorkoutService {
 		return repository.save(new ReadyWorkout(extractContentFromCurrentWorkout()));
 	}
 	
-	public ReadyWorkout getReadyWorkoutFromDB(int id) {
+	public ReadyWorkout getReadyWorkoutFromDB(int id) { 
 		return repository.findById(id).get();
 	}
 	
 	public List<ReadyWorkout> getAllWorkoutsObjects(){
 		 return ReadyWorkoutMapper.mapIterableToList(repository.findAll());
+	}
+	
+	public String listWorkoutsWithDates() {
+		String listedElements=""; 
+		for (ReadyWorkout rW : repository.findAll()) {	
+			listedElements += rW.getId()+". "+rW.getCreationDate()+"\n";
+		}
+		return listedElements;
 	}
 	
 	public void deleteWorkoutFromDB(int id) {
@@ -43,14 +50,21 @@ public class ReadyWorkoutService {
 		 ReadyWorkout workoutToUpdate = repository.findById(idToUpdate).get();
 		 workoutToUpdate.setContent(content);
 		 return repository.save(workoutToUpdate);
-		
-		
 	}
-	
-	
 	
 	private String extractContentFromCurrentWorkout() {
 		return currentWorkoutService.saveWorkout();
+		
+	}
+	 
+	public void saveReadyWorkoutFromDBAtDesktop(int id) {
+		ReadyWorkout toSave =  getReadyWorkoutFromDB(id);
+		currentWorkoutService.saveAtDesktop(toSave.getContent());
+		
+	}
+
+	public void loadReadyWorkoutToCurrent(int id) {
+		ReadyWorkout loadedWorkout = getReadyWorkoutFromDB(id);
 		
 	}
 

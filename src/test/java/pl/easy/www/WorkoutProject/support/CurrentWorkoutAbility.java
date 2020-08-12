@@ -30,6 +30,28 @@ public class CurrentWorkoutAbility extends ExerciseAbility{
 		service.addBreak(bRequest.getDuration());
 		CurrentWorkout.workout.add(exerciseElement);	
 	}
+	public void prepereNotEmptyListV2(){
+		CompleteRequest eRequest = generateSingleCompleteRequest();
+		ExerciseElement exerciseElement = new ExerciseElement(eRequest);
+		
+		CurrentWorkout.workout.add(exerciseElement);
+		CurrentWorkout.workout.add(exerciseElement);
+		CurrentWorkout.workout.add(exerciseElement);
+		CurrentWorkout.workout.add(exerciseElement);
+		CurrentWorkout.workout.add(exerciseElement);
+		CurrentWorkout.workout.add(exerciseElement);
+	}
+	public void prepereNotEmptyListV3(){
+		CurrentWorkoutService service = new CurrentWorkoutService();
+		BreakRequest bRequest= generateSingleBreakRequest();
+	
+		service.addBreak(bRequest.getDuration());
+		service.addBreak(bRequest.getDuration());
+		service.addBreak(bRequest.getDuration());
+		service.addBreak(bRequest.getDuration());
+		service.addBreak(bRequest.getDuration());
+		service.addBreak(bRequest.getDuration());
+	}
 
 	public ExerciseRequest generateSingleExerciseRequest() {
 		ExerciseRequest exerciseRequest = new ExerciseRequest();

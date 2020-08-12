@@ -3,6 +3,8 @@ package pl.easy.www.WorkoutProject.services;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +40,7 @@ public class CurrentWorkoutService {
 				repetitions));
 	}
 	
-	public void addExercise(CompleteRequest request) {
+	public void addExercise(CompleteRequest request) { 
 		
 		ExerciseRequest exerciseR = request.getExerciseRequest();
 		VolumeRequest volume = request.getVolumeRequest();
@@ -124,7 +126,7 @@ public class CurrentWorkoutService {
 	} 
 	
 	public String saveWorkout () {
-		StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder(); 
 		for (WorkoutPice workoutPice : CurrentWorkout.workout) {	
 			sb.append(workoutPice.toString());	
 		}
@@ -133,19 +135,30 @@ public class CurrentWorkoutService {
 	
 	public void saveAtDesktop(String workout) {
 		String userHomeFolder =System.getProperty("user.home");
-		File textFile = new File(userHomeFolder,"ZapisanyTrening.txt");
+		
+		File textFile = new File(userHomeFolder,generateLocalDateFileName()+".txt");
 		try{
 			BufferedWriter out = new BufferedWriter(new FileWriter(textFile));
 			out.write(workout);
 			out.flush();
 			out.close();
 		}catch (Exception e) {
-			e.getStackTrace();
+			
+			System.out.println(e.getMessage()); 
 		}
-	}
+	} 
+	
 	public void clearCurrentWorkout() {
-		CurrentWorkout.workout.clear();
+		CurrentWorkout.workout.clear(); 
 	}
+	
+	private String generateLocalDateFileName () {
+		return LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH_mm_ss")); 
+	}
+	
+//	public owerwriteCurrentList(ReadyWorkout readyWorkout) {
+//		
+//	}
 	
 	
 

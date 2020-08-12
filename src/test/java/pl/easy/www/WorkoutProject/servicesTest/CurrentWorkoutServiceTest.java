@@ -43,13 +43,13 @@ public class CurrentWorkoutServiceTest extends CurrentWorkoutAbility{
 	@Before
 	public void clear() {
 		CurrentWorkout.workout = new ArrayList<>();
-	}
+	} 
 	
 	
 	@Test
 	public void should_add_one_break_by_object_equal_size () {
 		//given
-		
+		 
 		BreakRequest request= generateSingleBreakRequest();
 		//when
 		currentWorkoutService.addBreak(request);
@@ -180,9 +180,8 @@ public class CurrentWorkoutServiceTest extends CurrentWorkoutAbility{
 		//then
 		Assert.assertEquals(CurrentWorkout.workout.get(index),expected); 
 	}
-	
-	@Test
 	@Ignore
+	@Test
 	public void should_save_workout_to_string () {
 		//given
 		String expected ="Break: 30s\r\n" + 
@@ -213,18 +212,16 @@ public class CurrentWorkoutServiceTest extends CurrentWorkoutAbility{
 	} 
 	
 	@Test
-	@Ignore
-	public void check_saving_to_desktop() {
-		prepereNotEmptyList();
-		String text = currentWorkoutService.saveWorkout();
-		currentWorkoutService.saveAtDesktop(text);
+	public void check_saving_to_desktop() { 
+		prepereNotEmptyList(); 
+		currentWorkoutService.saveAtDesktop(currentWorkoutService.saveWorkout());
 	}
 	
 	@Test
 	public void should_clear_current_workout() {
 		//given
 		prepereNotEmptyList();
-		assertEquals(6, CurrentWorkout.workout.size());
+		assertEquals(6, CurrentWorkout.workout.size()); 
 		//when
 		currentWorkoutService.clearCurrentWorkout();
 		//then

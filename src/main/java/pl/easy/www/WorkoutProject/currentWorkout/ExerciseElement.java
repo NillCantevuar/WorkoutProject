@@ -92,8 +92,8 @@ public class ExerciseElement implements WorkoutPice{
 	
 	@Override
 	public String toString() {
-		return "//"+exerciseGroupName + " " + exerciseDirectName+"\n"+
-				"Target: "+ muscleGroupName +" "+ muscleDirectName + "\n"+ 
+		return "E:"+exerciseGroupName+ " | " + exerciseDirectName+"\n"+
+				"Target: "+ muscleGroupName +" | "+ muscleDirectName + "\n"+ 
 				"Series: "+ series + " Reps: " + repetitions+"\n\n";
 	}
 	@Override
