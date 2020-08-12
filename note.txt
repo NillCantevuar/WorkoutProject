@@ -23,4 +23,14 @@ w ready workout service
 
 	
 -Document Reader
-	-zmienic to stringa exercise 
+	ragex wczytywanie od jednego do wielu wyrazów pomiedzy znakami specjalnymi
+	a moze wszystko miedzy dwoma znakami i potem .trim()
+	
+	
+	eksperyment z lista statyczna
+	jeżeli mam liste statyczna nazwijmy ja ListaStatyczna
+	I w odzielnej klasie Stworzymy Liste i wezmiemy rowana sie ListaStatyczna
+	(
+	- czy jezeli zmienimy cos w neij zmieni sie w liscie statycznej
+	-czy jezeli zmienimy cos w liście statycznej zmieniesi sie tez cos wineij
+	)

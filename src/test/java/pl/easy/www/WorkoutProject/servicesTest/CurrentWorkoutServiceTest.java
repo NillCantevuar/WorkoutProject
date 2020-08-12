@@ -184,25 +184,24 @@ public class CurrentWorkoutServiceTest extends CurrentWorkoutAbility{
 	@Test
 	public void should_save_workout_to_string () {
 		//given
-		String expected ="Break: 30s\r\n" + 
+		String expected ="Break -- 30s\r\n" + 
 				"\r\n" + 
-				"//Dipy Na drazku\r\n" + 
-				"Target: rece triceps\r\n" + 
+				"E:Dipy | Na drazku\r\n" + 
+				"Target: rece | triceps\r\n" + 
 				"Series: 3 Reps: 10\r\n" + 
 				"\r\n" + 
-				"Break: 30s\r\n" + 
+				"Break -- 30s\r\n" + 
 				"\r\n" + 
-				"//Dipy Na drazku\r\n" + 
-				"Target: rece triceps\r\n" + 
+				"E:Dipy | Na drazku\r\n" + 
+				"Target: rece | triceps\r\n" + 
 				"Series: 3 Reps: 10\r\n" + 
 				"\r\n" + 
-				"Break: 30s\r\n" + 
+				"Break -- 30s\r\n" + 
 				"\r\n" + 
-				"//Dipy Na drazku\r\n" + 
-				"Target: rece triceps\r\n" + 
-				"Series: 3 Reps: 10\r\n" + 
-				"\r\n" + 
-				"";
+				"E:Dipy | Na drazku\r\n" + 
+				"Target: rece | triceps\r\n" + 
+				"Series: 3 Reps: 10";
+				
 		prepereNotEmptyList();
 		//when
 		String actual = currentWorkoutService.saveWorkout();
