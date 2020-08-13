@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pl.easy.www.WorkoutProject.entity.ReadyWorkout;
+import pl.easy.www.WorkoutProject.interfaces.WorkoutPice;
+import pl.easy.www.WorkoutProject.mappers.ContentMapper;
 import pl.easy.www.WorkoutProject.mappers.ReadyWorkoutMapper;
 import pl.easy.www.WorkoutProject.repository.ReadyWorkoutRepository;
 
@@ -65,6 +67,8 @@ public class ReadyWorkoutService {
 
 	public void loadReadyWorkoutToCurrent(int id) {
 		ReadyWorkout loadedWorkout = getReadyWorkoutFromDB(id);
+		List<WorkoutPice> tempList =ContentMapper.decodeContetn(loadedWorkout.getContent());
+		currentWorkoutService.overvriteCurrentWorkout(tempList);
 		
 	}
 

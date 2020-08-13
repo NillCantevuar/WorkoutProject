@@ -1,36 +1,13 @@
 
-5. zapisywanie do pliku na kompie(do druku) (T)
- 
- -zrewidowac w testach gdfzdie naprawde potrzebuje ditrtestContext i w dokładnie jakiej fformie
- 	
  	
 //////////////////////
 
-[CurrentWorkoutControler]
--ujednolicenie nazw w current controller
--zapisywanie treningu proszace o sciezke zapisania
 
-[ExerciseControler]
--przeniesienie maperow do konstruktorow ?
-
-[CurrentWorkoutService]
--vrakuje metody replace break z BreakRequest
 
 //////////////////////
 
-w ready workout service
-	-metoda zaladuj workout do current z dysku (Optional)
-
 	
--Document Reader
-	ragex wczytywanie od jednego do wielu wyrazów pomiedzy znakami specjalnymi
-	a moze wszystko miedzy dwoma znakami i potem .trim()
+	zamieszanie straszne musze to zorganizować 
 	
 	
-	eksperyment z lista statyczna
-	jeżeli mam liste statyczna nazwijmy ja ListaStatyczna
-	I w odzielnej klasie Stworzymy Liste i wezmiemy rowana sie ListaStatyczna
-	(
-	- czy jezeli zmienimy cos w neij zmieni sie w liscie statycznej
-	-czy jezeli zmienimy cos w liście statycznej zmieniesi sie tez cos wineij
-	)
+	

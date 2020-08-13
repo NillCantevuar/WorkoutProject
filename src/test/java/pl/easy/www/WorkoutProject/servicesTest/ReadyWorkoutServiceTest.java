@@ -3,6 +3,7 @@ package pl.easy.www.WorkoutProject.servicesTest;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -163,7 +164,7 @@ public class ReadyWorkoutServiceTest extends CurrentWorkoutAbility{
 		//given
 		prepereNotEmptyList();
 		ReadyWorkout savedReadyWorkout = service.saveCurrentWorkoutToDB();
-		List<WorkoutPice> expectedList = currentService.getList();
+		List<WorkoutPice> expectedList =new ArrayList<>(currentService.getList()); 
 		currentService.clearCurrentWorkout();
 		//when
 		service.loadReadyWorkoutToCurrent(savedReadyWorkout.getId());
@@ -171,7 +172,6 @@ public class ReadyWorkoutServiceTest extends CurrentWorkoutAbility{
 		assertEquals(currentService.getList(), expectedList);
 
 	}
-
 	
 	
 

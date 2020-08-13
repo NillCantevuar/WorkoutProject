@@ -26,12 +26,12 @@ public class ContentMapper {
 		for (int i = 0; i < singleLines.length; i++) {
 			if(singleLines[i].equals("")) {
 			}else if(singleLines[i].charAt(0)=='B') {
-				createBreakElementFromLine(singleLines[i]);
+				decodedWorkout.add( createBreakElementFromLine(singleLines[i]));
 			}else if(singleLines[i].charAt(0)=='E') {
-				createExerciseElementFromLines(concatStrings(
+				decodedWorkout.add(createExerciseElementFromLines(concatStrings(
 						singleLines[i],
 						singleLines[i+1],
-						singleLines[i+2]));
+						singleLines[i+2])));
 				i+=2;
 			}else {
 				
@@ -51,28 +51,30 @@ public class ContentMapper {
 		Pattern pattern = Pattern.compile("(Break -- )(\\d*)s");
 		Matcher matcher = pattern.matcher(breakLine);
 		matcher.matches();
-		return new BreakElement(Integer.valueOf((matcher.group(2))));
+		int duration = Integer.valueOf((matcher.group(2)));
+		matcher.reset();
+		return new BreakElement(duration);
 	}
 	
 	public static ExerciseElement createExerciseElementFromLines(String exerciseLines) {
 		
 		Pattern pattern = Pattern.compile("E:(.*) \\| (.*) Target: (.*) \\| (.*) Series: ([\\d]*) Reps: ([\\d]*)");
 		Matcher matcher = pattern.matcher(exerciseLines);
-		System.out.println(matcher.matches());
-		
-		 return new ExerciseElement(
-				 matcher.group(1),
-				 matcher.group(2),
-				 matcher.group(3),
-				 matcher.group(4),
-				 Integer.valueOf(matcher.group(5)),
-				 Integer.valueOf(matcher.group(6)));
-		
+		matcher.matches();
+		String eg =  matcher.group(1);
+		String ed =  matcher.group(2);
+		String mg =  matcher.group(3);
+		String md =  matcher.group(4);
+		int ser = Integer.valueOf(matcher.group(5));
+		int rep = Integer.valueOf(matcher.group(6));
+		matcher.reset();
+		 return new ExerciseElement(eg,ed,mg,md,ser,rep);
+				 
 	}
 	//metoda ktora zlaczy mi trzy stingi usuwajac new line
 	
 	private static String concatStrings(String first,String second, String third) {
-		return first+second+third;
+		return first+" "+second+" "+third;
 	}
 
 }

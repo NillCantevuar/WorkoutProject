@@ -156,9 +156,12 @@ public class CurrentWorkoutService {
 		return LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH_mm_ss")); 
 	}
 	
-//	public owerwriteCurrentList(ReadyWorkout readyWorkout) {
-//		
-//	}
+
+	
+	public void overvriteCurrentWorkout(List<WorkoutPice> newCurrentList) {
+		CurrentWorkout.workout = newCurrentList;
+		
+	}
 	
 	
 
