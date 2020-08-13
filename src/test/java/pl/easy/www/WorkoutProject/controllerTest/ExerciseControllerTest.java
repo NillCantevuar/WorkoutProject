@@ -50,8 +50,7 @@ public class ExerciseControllerTest extends ExerciseAbility{
 	public void clearAll () {
 		exerciseService.clearDB();
 	}
-	//tu nie
-	@DirtiesContext(methodMode = MethodMode.AFTER_METHOD)
+
 	@Test
 	public void should_give_list_of_all_exercises () throws Exception {
 		//given
@@ -66,16 +65,13 @@ public class ExerciseControllerTest extends ExerciseAbility{
 		String contentJson =result.getResponse().getContentAsString();
 		//then
 		 List<Exercise> resultList =objectMapper.readValue(
-				 contentJson, new TypeReference<List<Exercise>>() { });
-			    
-		
-		for (int i = 0; i < resultList.size(); i++) {
-			
+				 contentJson, new TypeReference<List<Exercise>>() { });    
+		 
+		for (int i = 0; i < resultList.size(); i++) {	
 			assertEquals(exerciesList.get(i).showInfo(), resultList.get(i).showInfo());
 		}
 	}
-	//tu nie
-	@DirtiesContext(methodMode = MethodMode.AFTER_METHOD)
+	
 	@Test
 	public void should_add_two_exercise_using_request() throws Exception {
 		//given
@@ -88,11 +84,8 @@ public class ExerciseControllerTest extends ExerciseAbility{
 		//then
 		List<Exercise> actualList = exerciseService.getAllExercises();
 		assertEquals(expectedList.get(0).showInfo(),actualList.get(0).showInfo());
-		
-		
 	}
-	//tu nie 
-	@DirtiesContext(methodMode = MethodMode.AFTER_METHOD)
+	
 	@Test
 	public void should_delete_two_exercises_using_id() throws Exception {
 		List<Exercise> exerciesList =generateThreeExercises();
@@ -108,8 +101,7 @@ public class ExerciseControllerTest extends ExerciseAbility{
 		List<Exercise> actualList = exerciseService.getAllExercises();
 		assertEquals(actualList.size(), 1);
 	}
-	//tu nie
-	@DirtiesContext(methodMode = MethodMode.AFTER_METHOD)
+	
 	@Test
 	public void should_return_exercise_using_id() throws Exception {
 		List<Exercise> exercisesList = generateThreeExercises();
@@ -120,13 +112,10 @@ public class ExerciseControllerTest extends ExerciseAbility{
 		//then
 		String contentJson =result.getResponse().getContentAsString();
 		Exercise exerciseRecived =objectMapper.readValue(
-				 contentJson, Exercise.class);
-		
-		assertEquals(addedExercise.showInfo(),exerciseRecived.showInfo() );
-		
+				 contentJson, Exercise.class);	
+		assertEquals(addedExercise.showInfo(),exerciseRecived.showInfo());		
 	}
-	//tu nie
-	@DirtiesContext(methodMode = MethodMode.AFTER_METHOD)
+	
 	@Test
 	public void should_update_exercise_using_request_at_id() throws Exception {
 		List<Exercise> exerciseList = generateThreeExercises();
@@ -143,11 +132,7 @@ public class ExerciseControllerTest extends ExerciseAbility{
 				 contentJson, Exercise.class);
 		assertEquals(exerciseList.get(1).showInfo(), exerciseRecived.showInfo());
 	}
-		
-		
-		
-		
-		
-	}
+	
+}
 	
 

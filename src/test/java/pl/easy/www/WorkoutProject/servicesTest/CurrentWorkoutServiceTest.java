@@ -39,34 +39,29 @@ public class CurrentWorkoutServiceTest extends CurrentWorkoutAbility{
 	
 	CurrentWorkoutService currentWorkoutService = new CurrentWorkoutService();
 	
-	
 	@Before
 	public void clear() {
 		CurrentWorkout.workout = new ArrayList<>();
 	} 
-	
-	
+		
 	@Test
 	public void should_add_one_break_by_object_equal_size () {
-		//given
-		 
+		//given 
 		BreakRequest request= generateSingleBreakRequest();
 		//when
 		currentWorkoutService.addBreak(request);
 		//then
-		Assert.assertEquals(CurrentWorkout.workout.size(),1);
-		
+		Assert.assertEquals(CurrentWorkout.workout.size(),1);		
 	}
+	
 	@Test
 	public void should_add_one_break_by_number_equal_size () {
 		//given
-		
 		BreakRequest request= generateSingleBreakRequest();
 		//when
 		currentWorkoutService.addBreak(30);
 		//then
-		Assert.assertEquals(CurrentWorkout.workout.size(),1);
-		
+		Assert.assertEquals(CurrentWorkout.workout.size(),1);		
 	}
 	
 	@Test
@@ -77,8 +72,7 @@ public class CurrentWorkoutServiceTest extends CurrentWorkoutAbility{
 		//when
 		currentWorkoutService.addBreak(request);
 		//then
-		Assert.assertEquals(CurrentWorkout.workout.get(0),element);
-		
+		Assert.assertEquals(CurrentWorkout.workout.get(0),element);		
 	}
 	
 	@Test
@@ -88,8 +82,7 @@ public class CurrentWorkoutServiceTest extends CurrentWorkoutAbility{
 		//when
 		currentWorkoutService.addBreak(30);
 		//then
-		Assert.assertEquals(CurrentWorkout.workout.get(0),element);
-		
+		Assert.assertEquals(CurrentWorkout.workout.get(0),element);		
 	}
 	
 	@Test
@@ -101,9 +94,9 @@ public class CurrentWorkoutServiceTest extends CurrentWorkoutAbility{
 		currentWorkoutService.addBreak(request);
 		currentWorkoutService.addBreak(request);
 		//then
-		Assert.assertEquals(CurrentWorkout.workout.size(),3);
-		
+		Assert.assertEquals(CurrentWorkout.workout.size(),3);		
 	}
+	
 	@Test
 	public void should_add_multiple_breaks_by_number_equal_size () {
 		//given
@@ -113,22 +106,8 @@ public class CurrentWorkoutServiceTest extends CurrentWorkoutAbility{
 		currentWorkoutService.addBreak(20);
 		currentWorkoutService.addBreak(30);
 		//then
-		Assert.assertEquals(CurrentWorkout.workout.size(),3); 
-		
+		Assert.assertEquals(CurrentWorkout.workout.size(),3); 	
 	}
-	
-//	@Test
-//	public void should_add_one_break_and_exercise_equal_size () {
-//		//given
-//		BreakRequest request= generateSingleBreakRequest();
-//		CompleteRequest eRequest = generateSingleCompleteRequest();
-//		//when
-//		currentWorkoutService.addBreak(request);
-//		currentWorkoutService.addExercise(eRequest);
-//		//then
-//		Assert.assertEquals(CurrentWorkout.workout.size(),2);
-//		
-//	}
 	
 	@Test
 	public void sholud_delete_one_exercise_at_index() {
@@ -139,8 +118,7 @@ public class CurrentWorkoutServiceTest extends CurrentWorkoutAbility{
 		currentWorkoutService.delete(index);
 		//then
 		Assert.assertEquals(CurrentWorkout.workout.size(), 5);
-	}
-	
+	}	
 	
 	@Test
 	public void should_replce_break_by_break_equal_break() {
@@ -180,6 +158,7 @@ public class CurrentWorkoutServiceTest extends CurrentWorkoutAbility{
 		//then
 		Assert.assertEquals(CurrentWorkout.workout.get(index),expected); 
 	}
+	
 	@Ignore
 	@Test
 	public void should_save_workout_to_string () {
@@ -200,14 +179,12 @@ public class CurrentWorkoutServiceTest extends CurrentWorkoutAbility{
 				"\r\n" + 
 				"E:Dipy | Na drazku\r\n" + 
 				"Target: rece | triceps\r\n" + 
-				"Series: 3 Reps: 10";
-				
+				"Series: 3 Reps: 10";				
 		prepereNotEmptyList();
 		//when
 		String actual = currentWorkoutService.saveWorkout();
 		//then
-		Assert.assertEquals(expected, actual);
-		
+		Assert.assertEquals(expected, actual);	
 	} 
 	
 	@Test
@@ -225,7 +202,6 @@ public class CurrentWorkoutServiceTest extends CurrentWorkoutAbility{
 		currentWorkoutService.clearCurrentWorkout();
 		//then
 		assertEquals(0, CurrentWorkout.workout.size());
-		
 	}
 	
 	

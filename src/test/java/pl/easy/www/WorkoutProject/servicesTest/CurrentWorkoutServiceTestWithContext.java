@@ -39,9 +39,9 @@ public class CurrentWorkoutServiceTestWithContext extends ExerciseAbility{
 	@Before
 	public void clearAll () {
 		exerciseService.clearDB();
-		currentService.clearCurrentWorkout();
+		currentService.clearCurrentWorkout(); 
 	}
-	
+	//tu nie
 	@DirtiesContext(methodMode = MethodMode.AFTER_METHOD)
 	@Test
 	public void should_add_one_exercise_equal_size_from_DB () {
@@ -55,6 +55,7 @@ public class CurrentWorkoutServiceTestWithContext extends ExerciseAbility{
 		Assert.assertEquals(CurrentWorkout.workout.size(),1);
 	
 	}
+	//tu nie
 	@DirtiesContext(methodMode = MethodMode.AFTER_METHOD)
 	@Test
 	public void should_add_one_exercise_equal_object_from_DB_using_VR () {
@@ -69,6 +70,7 @@ public class CurrentWorkoutServiceTestWithContext extends ExerciseAbility{
 		Assert.assertEquals(allExercises.get(0).showInfo(),wp.showInfo());
 		
 	}
+	//tu nie
 	@DirtiesContext(methodMode = MethodMode.AFTER_METHOD)
 	@Test
 	public void should_add_one_exercise_equal_object_from_DB () {
@@ -84,6 +86,7 @@ public class CurrentWorkoutServiceTestWithContext extends ExerciseAbility{
 		Assert.assertEquals(allExercises.get(0).showInfo(),wp.showInfo());
 	
 	}
+	//tu nie
 	@DirtiesContext(methodMode = MethodMode.AFTER_METHOD)
 	@Test
 	public void should_add_multiple_exercises_equal_size_from_DB() {
@@ -105,6 +108,7 @@ public class CurrentWorkoutServiceTestWithContext extends ExerciseAbility{
 		Assert.assertEquals(CurrentWorkout.workout.size(),3);	
 		
 	}
+	//tu nie
 	@DirtiesContext(methodMode = MethodMode.AFTER_METHOD)
 	@Test
 	public void should_add_multiple_exercises_equal_object_from_DB() {
@@ -130,6 +134,7 @@ public class CurrentWorkoutServiceTestWithContext extends ExerciseAbility{
 		Assert.assertEquals(allExercises.get(2).showInfo()
 				,new ExerciseElement(threeExercises.get(2),thirdSeries, thirdRepetitions).showInfo());	
 	}
+	//tu nie
 	@DirtiesContext(methodMode = MethodMode.AFTER_METHOD)
 	@Test
 	public void should_replce_exercise_by_exercise_by_id_equal_exercise() {
@@ -144,6 +149,7 @@ public class CurrentWorkoutServiceTestWithContext extends ExerciseAbility{
 		Assert.assertEquals(CurrentWorkout.workout.get(0).showInfo(),ee.showInfo()); 
 		
 	}
+	//tu nie
 	@DirtiesContext(methodMode = MethodMode.AFTER_METHOD)
 	@Test
 	public void should_add_exercise_to_current_workout_and_to_db () {
@@ -163,6 +169,7 @@ public class CurrentWorkoutServiceTestWithContext extends ExerciseAbility{
 		assertEquals(expectedElement.getMuscleGroupName(),allExercisesFromDB.get(0).getMuscleGroupName());
 		
 	}
+	//tu before
 	@DirtiesContext(methodMode = MethodMode.AFTER_METHOD)
 	@Test
 	public void should_add_exercise_using_request_to_db_and_replace_by_this_at_index () {

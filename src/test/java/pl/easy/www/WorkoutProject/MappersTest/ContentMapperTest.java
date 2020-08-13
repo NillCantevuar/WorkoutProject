@@ -32,24 +32,21 @@ public class ContentMapperTest extends CurrentWorkoutAbility{
 		String breakLine = "Break -- 30s";
 		BreakElement expectedBreakElement = new BreakElement(30);
 		//when
-		BreakElement resoultBreakElement = ContentMapper.createBreakElementFromLine(breakLine);
+		BreakElement resoultBreakElement = ContentMapper.createBreakElementFromLine(breakLine); 
 		//then
 		assertEquals(expectedBreakElement, resoultBreakElement);
-	
 	}
 	
 	@Test
 	public void should_translate_text_lines_to_ExerciseElement() {
 		//given
-		String exerciseLine = "E:Dipy | Na drazku Target: rece | triceps Series: 3 Reps: 10";
-							 
+		String exerciseLine = "E:Dipy | Na drazku Target: rece | triceps Series: 3 Reps: 10";						 
 		ExerciseElement expectedExerciseElement = 
 				new ExerciseElement("Dipy","Na drazku","rece","triceps",3,10);
 		//when
 		ExerciseElement resoultExerciseElement = ContentMapper.createExerciseElementFromLines(exerciseLine);
 		//then
 		assertEquals(expectedExerciseElement, resoultExerciseElement);
-	
 	}
 	
 	@Test
@@ -63,11 +60,5 @@ public class ContentMapperTest extends CurrentWorkoutAbility{
 		List<WorkoutPice> resultList = ContentMapper.decodeContetn(content);
 		//then
 		assertEquals(expectedList, resultList);
-		
 	}
-	
-	//potrzebuje stringa z contentenm\ metoda przerabiania z current
-	//listy expected z trenigniem - kopia current
-	
-
 }
