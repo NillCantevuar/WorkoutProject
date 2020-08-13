@@ -60,31 +60,35 @@ public class CurrentWorkoutController {
 	public void addBreak (@RequestParam int duration) {
 		service.addBreak(duration);
 	}
-	
+	// tu
+	//z malej
 	@PostMapping ("/replaceByExerciseParams/{current}")
 	public void replaceByExerciseAtIndex(@PathVariable int current,@RequestParam int dbIndex,@RequestParam int series, @RequestParam int repetitions){
 		service.replaceByExerciseAtIndex(dbIndex,current,series,repetitions);	
 	}
-	
+	// tu
+	//z malej
 	@PostMapping ("/replaceByExerciseVolume/{current}")
 	public void replaceByExerciseAtVolume(@PathVariable int current,@RequestParam int dbIndex,@RequestBody VolumeRequest volumeRequest) {
 		service.replaceByExerciseAtIndex(dbIndex, current, volumeRequest);
 	}
-	
+	// tu
+	//z malej
 	@PatchMapping("/replaceByExerciseComplete/{current}")
 	public void replaceByExerciseComplete(@PathVariable int current,@RequestBody CompleteRequest completeRequest) {
 		service.replaceByExerciseRequest(completeRequest, current);
 	}
-	
+	//z malej
 	@PostMapping ("/replaceByBreak/Request/{current}")
 	public void replaceByBreakAtIndex(@RequestBody BreakRequest request,@PathVariable int current) {
 		service.replaceByBreakAtIndex(request.getDuration(),current);
 	}
-	
+	//z malej
 	@PostMapping ("/replaceByBreak/Duration/{current}")
 	public void replaceByBreakAtIndex(@PathVariable int current,@RequestParam int duration) {
 		service.replaceByBreakAtIndex(duration,current);
 	}
+	
 	@DeleteMapping("/delete/{current}")
 	public void delete(@PathVariable int current) {
 		service.delete(current);

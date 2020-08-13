@@ -81,24 +81,6 @@ public class CurrentWorkoutControllerTest extends CurrentWorkoutAbility{
 		assertEquals(listJson,contetnJson);
 	}
 	
-//	@Test
-//	public void should_add_exercise_using_complete_request_expect_equal_exercise() throws Exception {
-//		//given
-//		CompleteRequest completeRequest = generateSingleCompleteRequest();
-//		ExerciseElement expectedElement = new ExerciseElement(completeRequest);
-//		String jsonRequest = objectMapper.writeValueAsString(completeRequest);
-//		//when
-//		mockMvc.perform(post("/api/currentWorkout/addExercise/complete")
-//				.contentType("application/json")
-//				.content(jsonRequest))
-//				.andExpect(status().isOk())
-//			.andReturn();
-//		//then
-//		WorkoutPice element =  CurrentWorkout.workout.get(0);
-//		assertEquals(expectedElement.showInfo() ,element.showInfo());
-//	}
-	
-	
 	@Test
 	public void should_add_exercise_using_id_leading_to_db_and_params() throws Exception {
 		//given

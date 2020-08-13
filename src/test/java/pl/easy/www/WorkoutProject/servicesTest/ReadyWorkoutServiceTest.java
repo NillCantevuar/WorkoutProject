@@ -63,10 +63,9 @@ public class ReadyWorkoutServiceTest extends CurrentWorkoutAbility{
 		service.saveCurrentWorkoutToDB();
 		//then
 		List<ReadyWorkout> readyWorkouts = service.getAllWorkoutsObjects();
-		assertEquals(currentService.saveWorkout(), readyWorkouts.get(0).getContent());
+		assertEquals(currentService.saveWorkout(), readyWorkouts.get(0).getContent()); 
 	}
 	
-	@DirtiesContext(methodMode = MethodMode.BEFORE_METHOD)
 	@Test
 	public void should_get_single_readyWorkout_using_id () {
 		//given
@@ -93,7 +92,6 @@ public class ReadyWorkoutServiceTest extends CurrentWorkoutAbility{
 		assertEquals(readyWorkouts.size(), 0);
 	}
 	
-	@DirtiesContext(methodMode = MethodMode.BEFORE_METHOD)
 	@Test
 	public void should_delete_readyWorkout_from_db_using_id () {
 		//given
@@ -107,7 +105,6 @@ public class ReadyWorkoutServiceTest extends CurrentWorkoutAbility{
 		
 	}
 	
-	@DirtiesContext(methodMode = MethodMode.BEFORE_METHOD)
 	@Test
 	public void should_update_content_at_given_id() {
 		//given
@@ -123,8 +120,8 @@ public class ReadyWorkoutServiceTest extends CurrentWorkoutAbility{
 		
 		
 	}
+
 	@Ignore
-	@DirtiesContext(methodMode = MethodMode.BEFORE_METHOD)
 	@Test
 	public void check_list_ready_workouts () {
 		//given
@@ -146,7 +143,6 @@ public class ReadyWorkoutServiceTest extends CurrentWorkoutAbility{
 	}
 	
 	@Ignore
-	@DirtiesContext(methodMode = MethodMode.BEFORE_METHOD)
 	@Test
 	public void check_save_ready_workout_from_DB_at_desktop() {
 		//given
@@ -158,7 +154,6 @@ public class ReadyWorkoutServiceTest extends CurrentWorkoutAbility{
 		
 	}
 	
-	@DirtiesContext(methodMode = MethodMode.BEFORE_METHOD)
 	@Test
 	public void should_load_ReadyWorkout_from_db_to_current () {
 		//given
