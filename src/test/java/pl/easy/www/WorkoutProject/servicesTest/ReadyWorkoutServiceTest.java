@@ -3,6 +3,8 @@ package pl.easy.www.WorkoutProject.servicesTest;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -167,7 +169,34 @@ public class ReadyWorkoutServiceTest extends CurrentWorkoutAbility{
 		assertEquals(currentService.getList(), expectedList);
 
 	}
-	
+	@Ignore
+	@Test
+	public void should_load_file_and_return_string() {
+		//given
+		String filePath ="C:\\Users\\NillCantevuar\\2020-08-13 08_38_46.txt";
+		String expectedContent="Break -- 30s\r\n" + 
+				"\r\n" + 
+				"E:Dipy | Na drazku\r\n" + 
+				"Target: rece | triceps\r\n" + 
+				"Series: 3 Reps: 10\r\n" + 
+				"\r\n" + 
+				"Break -- 30s\r\n" + 
+				"\r\n" + 
+				"E:Dipy | Na drazku\r\n" + 
+				"Target: rece | triceps\r\n" + 
+				"Series: 3 Reps: 10\r\n" + 
+				"\r\n" + 
+				"Break -- 30s\r\n" + 
+				"\r\n" + 
+				"E:Dipy | Na drazku\r\n" + 
+				"Target: rece | triceps\r\n" + 
+				"Series: 3 Reps: 10\n ";
+		//when
+		String resultContent = service.loadFileFromDiscToContetnString(filePath);
+		//then
+		assertEquals(expectedContent, resultContent);
+		
+	}
 	
 
 }

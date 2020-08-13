@@ -1,4 +1,0 @@
-Kiedy potrzebny mi jest direst context ?
- -Kiedy chce operować na id na sztywno
- 
- Kontext i tak mi sie stawia w klasie testowej nowy?

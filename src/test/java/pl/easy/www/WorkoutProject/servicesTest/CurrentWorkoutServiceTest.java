@@ -146,6 +146,42 @@ public class CurrentWorkoutServiceTest extends CurrentWorkoutAbility{
 		Assert.assertNotEquals(CurrentWorkout.workout.get(index),expected); 
 	}
 	
+	
+	
+	//to robie
+	@Test
+	public void should_replce_break_by_break_equal_break_using_request() {
+		//given
+		prepereNotEmptyList();
+		int index = 0;
+		BreakRequest breakRequest = generateSingleDifferentBreakRequest();
+		BreakElement expected = BreakMapper.map(breakRequest);
+		//when
+		currentWorkoutService.replaceByBreakAtIndex(breakRequest.getDuration(), index);
+		//then
+		Assert.assertEquals(CurrentWorkout.workout.get(index),expected); 
+	}
+	
+	
+	
+	
+	//to robie
+	@Test
+	public void should_replce_break_by_break_not_equal_old_break_using_request() {
+		//given
+		prepereNotEmptyList();
+		int index = 0;
+		BreakRequest breakRequest = generateSingleDifferentBreakRequest();
+		BreakElement expected = BreakMapper.map(generateSingleBreakRequest());
+		//when
+		currentWorkoutService.replaceByBreakAtIndex(breakRequest, index);
+		//then
+		Assert.assertNotEquals(CurrentWorkout.workout.get(index),expected); 
+	}
+	
+	
+	
+	
 	@Test
 	public void should_replce_exercise_by_break_equal_break() {
 		//given
@@ -154,10 +190,11 @@ public class CurrentWorkoutServiceTest extends CurrentWorkoutAbility{
 		BreakRequest breakRequest = generateSingleDifferentBreakRequest();
 		BreakElement expected = BreakMapper.map(breakRequest);
 		//when
-		currentWorkoutService.replaceByBreakAtIndex(breakRequest.getDuration(), index);
+		currentWorkoutService.replaceByBreakAtIndex(breakRequest, index);
 		//then
 		Assert.assertEquals(CurrentWorkout.workout.get(index),expected); 
 	}
+	
 	
 	@Ignore
 	@Test

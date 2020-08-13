@@ -1,6 +1,7 @@
 package pl.easy.www.WorkoutProject.currentWorkout;
 
 import pl.easy.www.WorkoutProject.interfaces.WorkoutPice;
+import pl.easy.www.WorkoutProject.protocol.request.BreakRequest;
 
 public class BreakElement implements WorkoutPice{
 
@@ -22,6 +23,10 @@ public class BreakElement implements WorkoutPice{
 	public BreakElement(int duration) {
 		super();
 		this.duration = duration;
+	}
+
+	public BreakElement(BreakRequest breakRequest) {
+		this.duration = breakRequest.getDuration();
 	}
 
 	@Override

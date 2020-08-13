@@ -60,31 +60,26 @@ public class CurrentWorkoutController {
 	public void addBreak (@RequestParam int duration) {
 		service.addBreak(duration);
 	}
-	// tu
-	//z malej
-	@PostMapping ("/replaceByExerciseParams/{current}")
+	
+	@PostMapping ("/replaceByExercise/params/{current}")
 	public void replaceByExerciseAtIndex(@PathVariable int current,@RequestParam int dbIndex,@RequestParam int series, @RequestParam int repetitions){
 		service.replaceByExerciseAtIndex(dbIndex,current,series,repetitions);	
 	}
-	// tu
-	//z malej
-	@PostMapping ("/replaceByExerciseVolume/{current}")
+	
+	@PostMapping ("/replaceByExercise/volume/{current}")
 	public void replaceByExerciseAtVolume(@PathVariable int current,@RequestParam int dbIndex,@RequestBody VolumeRequest volumeRequest) {
 		service.replaceByExerciseAtIndex(dbIndex, current, volumeRequest);
 	}
-	// tu
-	//z malej
-	@PatchMapping("/replaceByExerciseComplete/{current}")
+	
+	@PatchMapping("/replaceByExercise/complete/{current}")
 	public void replaceByExerciseComplete(@PathVariable int current,@RequestBody CompleteRequest completeRequest) {
 		service.replaceByExerciseRequest(completeRequest, current);
 	}
-	//z malej
-	@PostMapping ("/replaceByBreak/Request/{current}")
+	@PostMapping ("/replaceByBreak/request/{current}")
 	public void replaceByBreakAtIndex(@RequestBody BreakRequest request,@PathVariable int current) {
 		service.replaceByBreakAtIndex(request.getDuration(),current);
 	}
-	//z malej
-	@PostMapping ("/replaceByBreak/Duration/{current}")
+	@PostMapping ("/replaceByBreak/duration/{current}")
 	public void replaceByBreakAtIndex(@PathVariable int current,@RequestParam int duration) {
 		service.replaceByBreakAtIndex(duration,current);
 	}

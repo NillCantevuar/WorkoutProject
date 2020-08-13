@@ -1,6 +1,11 @@
 package pl.easy.www.WorkoutProject.services;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +20,7 @@ import pl.easy.www.WorkoutProject.repository.ReadyWorkoutRepository;
 public class ReadyWorkoutService {
 	
 	@Autowired
-	ReadyWorkoutRepository repository;
+	ReadyWorkoutRepository repository; 
 	
 	@Autowired
 	CurrentWorkoutService currentWorkoutService;
@@ -70,6 +75,24 @@ public class ReadyWorkoutService {
 		List<WorkoutPice> tempList =ContentMapper.decodeContetn(loadedWorkout.getContent());
 		currentWorkoutService.overvriteCurrentWorkout(tempList);
 		
+	}
+	public String loadFileFromDiscToContetnString(String filePath) {
+		String content ="";
+		Path path = Paths.get(filePath);
+		File myFile = path.toFile();
+		try {
+			Scanner scanner = new Scanner(myFile);
+			while (scanner.hasNextLine()) {
+				content += scanner.nextLine()+"\n";
+			}
+			scanner.close();
+			}catch (FileNotFoundException e) {
+			System.out.println("Blad czytania pliku");
+			e.printStackTrace();
+		}
+	
+		
+		return content;
 	}
 
 }

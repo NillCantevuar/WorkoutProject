@@ -155,7 +155,7 @@ public class CurrentWorkoutControllerTest extends CurrentWorkoutAbility{
 		BreakElement breakElement = new BreakElement(time);
 		String jsonRequest =objectMapper.writeValueAsString(breakRequest);
 		//when s
-		mockMvc.perform(post("/api/currentWorkout/replaceByBreak/Request/"+String.valueOf(currIndex))
+		mockMvc.perform(post("/api/currentWorkout/replaceByBreak/request/"+String.valueOf(currIndex))
 				.contentType("application/json")
 				.content(jsonRequest))
 			.andExpect(status().isOk());
@@ -171,7 +171,7 @@ public class CurrentWorkoutControllerTest extends CurrentWorkoutAbility{
 		CurrentWorkout.workout.add(currIndex,new BreakElement(90));
 		BreakElement breakElement = new BreakElement(duration);
 		//when
-		mockMvc.perform(post("/api/currentWorkout/replaceByBreak/Duration/"+String.valueOf(currIndex))
+		mockMvc.perform(post("/api/currentWorkout/replaceByBreak/duration/"+String.valueOf(currIndex))
 				.param("duration", String.valueOf(duration)))
 			.andExpect(status().isOk());
 		//then
@@ -203,7 +203,7 @@ public class CurrentWorkoutControllerTest extends CurrentWorkoutAbility{
 		ExerciseElement expectedElement = new ExerciseElement(listFormDB.get(1),series,repetitions);
 		CurrentWorkout.workout.add(currIndex,exerciseElement);
 		//when
-		mockMvc.perform(post("/api/currentWorkout/replaceByExerciseParams/"+String.valueOf(currIndex))
+		mockMvc.perform(post("/api/currentWorkout/replaceByExercise/params/"+String.valueOf(currIndex))
 				.param("dbIndex", "2")
 				.param("repetitions", String.valueOf(repetitions))
 				.param("series", String.valueOf(series)))
@@ -227,7 +227,7 @@ public class CurrentWorkoutControllerTest extends CurrentWorkoutAbility{
 		ExerciseElement expectedElement = new ExerciseElement(listFormDB.get(1),volumeRequest.getSeries(),volumeRequest.getRepetitions());
 		CurrentWorkout.workout.add(currIndex,exerciseElement);
 		//when
-		mockMvc.perform(post("/api/currentWorkout/replaceByExerciseVolume/"+String.valueOf(currIndex))
+		mockMvc.perform(post("/api/currentWorkout/replaceByExercise/volume/"+String.valueOf(currIndex))
 				.param("dbIndex", "2")
 				.contentType("application/json")
 				.content(jsonRequest))
@@ -277,7 +277,7 @@ public class CurrentWorkoutControllerTest extends CurrentWorkoutAbility{
 	ExerciseElement exerciseElement = new ExerciseElement(completeRequest);
 	String jsonRequest = objectMapper.writeValueAsString(completeRequest);
 	//when
-	mockMvc.perform(patch("/api/currentWorkout/replaceByExerciseComplete/"+0)
+	mockMvc.perform(patch("/api/currentWorkout/replaceByExercise/complete/"+0)
 			.contentType("application/json")
 			.content(jsonRequest)).andExpect(status()
 					.isOk());

@@ -121,6 +121,7 @@ public class CurrentWorkoutService {
 		CurrentWorkout.workout.set(index, new BreakElement(duration));
 	}
 	
+	
 	public List<WorkoutPice> getList(){
 		return CurrentWorkout.workout;
 	} 
@@ -162,6 +163,12 @@ public class CurrentWorkoutService {
 		CurrentWorkout.workout = newCurrentList;
 		
 	}
+
+	public void replaceByBreakAtIndex(BreakRequest breakRequest, int index) {
+		CurrentWorkout.workout.set(index, new BreakElement(breakRequest));
+		
+	}
+	
 	
 	
 
