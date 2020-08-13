@@ -98,8 +98,7 @@ public class CurrentWorkoutControllerTest extends CurrentWorkoutAbility{
 //		assertEquals(expectedElement.showInfo() ,element.showInfo());
 //	}
 	
-	//tu nie
-	@DirtiesContext(methodMode = MethodMode.AFTER_METHOD)
+	
 	@Test
 	public void should_add_exercise_using_id_leading_to_db_and_params() throws Exception {
 		//given
@@ -116,8 +115,7 @@ public class CurrentWorkoutControllerTest extends CurrentWorkoutAbility{
 		WorkoutPice resoultElement = CurrentWorkout.workout.get(0);
 		assertEquals(expectedElement.showInfo(), resoultElement.showInfo());
 	}
-	//tu nie
-	@DirtiesContext(methodMode = MethodMode.AFTER_METHOD)
+	
 	@Test
 	public void should_add_exercise_using_id_leading_to_db_and_volume_request() throws Exception {
 		//given
@@ -209,8 +207,8 @@ public class CurrentWorkoutControllerTest extends CurrentWorkoutAbility{
 		//then
 		assertThrows(IndexOutOfBoundsException.class, () -> CurrentWorkout.workout.get(currIndex));
 	}
-	//tutaj before
-	@DirtiesContext(methodMode = MethodMode.AFTER_METHOD)
+	
+	@DirtiesContext(methodMode = MethodMode.BEFORE_METHOD)
 	@Test
 	public void should_replace_by_exercise_using_params() throws Exception {
 		//given
@@ -233,8 +231,8 @@ public class CurrentWorkoutControllerTest extends CurrentWorkoutAbility{
 		WorkoutPice resultElement =  CurrentWorkout.workout.get(currIndex);
 		assertEquals(expectedElement.showInfo(), resultElement.showInfo());
 	}
-	//tu before
-	@DirtiesContext(methodMode = MethodMode.AFTER_METHOD)
+	
+	@DirtiesContext(methodMode = MethodMode.BEFORE_METHOD)
 	@Test
 	public void should_replace_by_exercise_using_volume() throws Exception {
 		//given
@@ -257,8 +255,7 @@ public class CurrentWorkoutControllerTest extends CurrentWorkoutAbility{
 		WorkoutPice resultElement =  CurrentWorkout.workout.get(currIndex);
 		assertEquals(expectedElement.showInfo(), resultElement.showInfo());
 	}
-	//tu nie
-	@DirtiesContext(methodMode = MethodMode.AFTER_METHOD)
+	
 	@Test
 	public void should_clear_current_workout_list() throws Exception {
 		//given
@@ -268,8 +265,7 @@ public class CurrentWorkoutControllerTest extends CurrentWorkoutAbility{
 		//then
 		assertEquals(CurrentWorkout.workout.size(), 0);
 	}
-	//tu nie
-	@DirtiesContext(methodMode = MethodMode.AFTER_METHOD)
+	
 	@Test
 	public void should_add_exercise_to_current_and_db_by_request() throws Exception {
 		//given
@@ -289,8 +285,7 @@ public class CurrentWorkoutControllerTest extends CurrentWorkoutAbility{
 	   assertEquals(expectedExercise.showInfo(), exercisesFromDb.get(0).showInfo());
 	   assertEquals(expectedElement.showInfo(), currentWorkoutList.get(0).showInfo());
 	}
-	//tu nie
-	@DirtiesContext(methodMode = MethodMode.AFTER_METHOD)
+	
 	@Test
 	public void should_add_exercise_to_current_by_request_and_replace_at_index () throws Exception {
 	//given

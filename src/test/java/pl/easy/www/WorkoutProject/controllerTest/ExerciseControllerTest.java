@@ -50,7 +50,7 @@ public class ExerciseControllerTest extends ExerciseAbility{
 	public void clearAll () {
 		exerciseService.clearDB();
 	}
-	
+	//tu nie
 	@DirtiesContext(methodMode = MethodMode.AFTER_METHOD)
 	@Test
 	public void should_give_list_of_all_exercises () throws Exception {
@@ -58,7 +58,7 @@ public class ExerciseControllerTest extends ExerciseAbility{
 		List<Exercise> exerciesList = generateThreeExercises();
 		String expectedJson = objectMapper.writeValueAsString(exerciesList);
 		exerciseService.add(exerciesList.get(0));
-		exerciseService.add(exerciesList.get(1));
+		exerciseService.add(exerciesList.get(1)); 
 		exerciseService.add(exerciesList.get(2));
 		//when
 		MvcResult result =  mockMvc.perform(get("/api/exercises"))
@@ -74,7 +74,7 @@ public class ExerciseControllerTest extends ExerciseAbility{
 			assertEquals(exerciesList.get(i).showInfo(), resultList.get(i).showInfo());
 		}
 	}
-	
+	//tu nie
 	@DirtiesContext(methodMode = MethodMode.AFTER_METHOD)
 	@Test
 	public void should_add_two_exercise_using_request() throws Exception {
@@ -91,7 +91,7 @@ public class ExerciseControllerTest extends ExerciseAbility{
 		
 		
 	}
-	
+	//tu nie 
 	@DirtiesContext(methodMode = MethodMode.AFTER_METHOD)
 	@Test
 	public void should_delete_two_exercises_using_id() throws Exception {
@@ -108,7 +108,7 @@ public class ExerciseControllerTest extends ExerciseAbility{
 		List<Exercise> actualList = exerciseService.getAllExercises();
 		assertEquals(actualList.size(), 1);
 	}
-	
+	//tu nie
 	@DirtiesContext(methodMode = MethodMode.AFTER_METHOD)
 	@Test
 	public void should_return_exercise_using_id() throws Exception {
@@ -125,7 +125,7 @@ public class ExerciseControllerTest extends ExerciseAbility{
 		assertEquals(addedExercise.showInfo(),exerciseRecived.showInfo() );
 		
 	}
-	
+	//tu nie
 	@DirtiesContext(methodMode = MethodMode.AFTER_METHOD)
 	@Test
 	public void should_update_exercise_using_request_at_id() throws Exception {
