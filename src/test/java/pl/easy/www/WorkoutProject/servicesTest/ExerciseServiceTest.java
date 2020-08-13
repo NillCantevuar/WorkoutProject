@@ -63,7 +63,7 @@ public class ExerciseServiceTest extends ExerciseAbility{
 	public void shold_add_exercise_and_have_equal_exercises () {
 		
 		// given
-		Exercise exercise = generateExercise();
+		Exercise exercise = generateExercise(); 
 		// when
 		Exercise added = exerciseService.add(exercise);
 		//then
