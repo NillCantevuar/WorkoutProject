@@ -1,6 +1,7 @@
 package pl.easy.www.WorkoutProject.controllerTest;
 
 import static org.junit.Assert.assertEquals;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -147,6 +148,19 @@ public class ReadyWorkoutControllerTest extends CurrentWorkoutAbility {
 		//then
 		List<ReadyWorkout> allReadyWorkouts = readyWorkoutService.getAllWorkoutsObjects();
 		assertEquals(updateContent, allReadyWorkouts.get(0).getContent());
+	}
+	
+	@Test
+	public void should_delete_all_from_DB () throws Exception {
+		//given
+		addThreeReadyWorkoutsToDB();
+		assertEquals(3, readyWorkoutService.getAllWorkoutsObjects().size());
+		//when
+		mockMvc.perform(delete("/api/readyWorkouts/deleteAll/"))
+			.andExpect(status().isOk());
+		//then
+		assertEquals(0, readyWorkoutService.getAllWorkoutsObjects().size());
+		
 	}
 
 }
