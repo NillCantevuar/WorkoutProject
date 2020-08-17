@@ -36,7 +36,7 @@ public class ExerciseController {
 		return ExerciseMapper
 				.mapExercise(service.add(new Exercise(
 						request.getExerciseGroupName(),
-						request.getExerciseDirectName(),
+						request.getExerciseDirectName(), 
 						request.getMuscleGroupName(),
 						request.getMuscleDirectName()
 						)));		

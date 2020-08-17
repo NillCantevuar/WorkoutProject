@@ -23,7 +23,7 @@ public class ReadyWorkoutService {
 	private ReadyWorkoutRepository repository; 
 	
 	@Autowired
-	CurrentWorkoutService currentWorkoutService;
+	CurrentWorkoutService currentWorkoutService; 
 	
 	public ReadyWorkout saveCurrentWorkoutToDB () {	
 		return repository.save(new ReadyWorkout(extractContentFromCurrentWorkout()));

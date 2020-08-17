@@ -2,6 +2,7 @@ package pl.easy.www.WorkoutProject.controllerTest;
 
 import static org.junit.Assert.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -120,6 +122,31 @@ public class ReadyWorkoutControllerTest extends CurrentWorkoutAbility {
 		ReadyWorkout parsedObject = objectMapper.readValue(contetnJson, ReadyWorkout.class);
 		assertEquals(currentString, parsedObject.getContent());
 		
+	}
+	@Ignore
+	@Test
+	public void check_save_ReadyWorkout_from_DB_at_desktop () throws Exception{
+		//given
+		ReadyWorkout addedReadyWorkout = addSingleReadyWorkoutToDB();
+		//when
+		mockMvc.perform(get("/api/readyWorkouts/saveReadyWorkoutAtDesktop/"+addedReadyWorkout.getId()));
+		//then
+		
+	}
+	
+	@Test
+	public void should_update_readyWorkout_in_DB() throws Exception{
+		//given
+		List<ReadyWorkout> readyWrokouts = generateThreeDiffrentReadyWorkouts();
+		ReadyWorkout savedReadyWorkout = readyWorkoutService.saveReadyWorkoutToDB(readyWrokouts.get(0));
+		String updateContent = readyWrokouts.get(1).getContent();
+		//when
+		mockMvc.perform(patch("/api/readyWorkouts/updateReadyWorkout/"+savedReadyWorkout.getId())
+				.contentType("application/json")
+				.content(updateContent)).andExpect(status().isOk());
+		//then
+		List<ReadyWorkout> allReadyWorkouts = readyWorkoutService.getAllWorkoutsObjects();
+		assertEquals(updateContent, allReadyWorkouts.get(0).getContent());
 	}
 
 }

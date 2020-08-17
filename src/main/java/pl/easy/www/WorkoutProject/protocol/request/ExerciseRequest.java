@@ -9,7 +9,7 @@ public class ExerciseRequest {
 	private String muscleGroupName;
 	private String muscleDirectName;
 	
-	public ExerciseRequest(Exercise exercise) {
+	public ExerciseRequest(Exercise exercise) { 
 		this.exerciseGroupName = exercise.getExerciseGroupName();
 		this.exerciseDirectName = exercise.getExerciseDirectName();
 		this.muscleGroupName = exercise.getMuscleGroupName();
@@ -18,6 +18,16 @@ public class ExerciseRequest {
 	public ExerciseRequest() {
 	
 	}
+	
+	public ExerciseRequest(String exerciseGroupName, String exerciseDirectName, String muscleGroupName,
+			String muscleDirectName) {
+		super();
+		this.exerciseGroupName = exerciseGroupName;
+		this.exerciseDirectName = exerciseDirectName;
+		this.muscleGroupName = muscleGroupName;
+		this.muscleDirectName = muscleDirectName;
+	}
+	
 	public String getExerciseGroupName() {
 		return exerciseGroupName;
 	}
