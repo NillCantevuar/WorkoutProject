@@ -55,9 +55,9 @@ public class CurrentWorkoutControllerTest extends CurrentWorkoutAbility{
 	@Autowired
 	private ObjectMapper objectMapper;
 	@Autowired 
-	CurrentWorkoutService currentService;
+	private CurrentWorkoutService currentService;
 	@Autowired
-	ExerciseService exerciseService;
+	private ExerciseService exerciseService;
 	
 	@Before
 	public void clearAll () {

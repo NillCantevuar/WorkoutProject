@@ -5,7 +5,7 @@ import pl.easy.www.WorkoutProject.protocol.request.BreakRequest;
 
 public class BreakElement implements WorkoutPice{
 
-	int duration;
+	private int duration;
 
 	public int getDuration() {
 		return duration;

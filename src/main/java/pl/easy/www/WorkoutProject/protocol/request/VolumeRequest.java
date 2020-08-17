@@ -4,9 +4,8 @@ public class VolumeRequest {
 	
 	private int series;
 	private int repetitions;
+	
 	public int getSeries() {
-		
-		
 		return series;
 	}
 	public void setSeries(int series) {

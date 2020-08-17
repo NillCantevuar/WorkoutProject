@@ -31,10 +31,9 @@ import pl.easy.www.WorkoutProject.support.ExerciseAbility;
 public class CurrentWorkoutServiceTestWithContext extends ExerciseAbility{
 		
 	@Autowired
-	CurrentWorkoutService currentService;
-	
+	private CurrentWorkoutService currentService;
 	@Autowired
-	ExerciseService exerciseService;
+	private ExerciseService exerciseService;
 	
 	@Before
 	public void clearAll () {
@@ -143,6 +142,22 @@ public class CurrentWorkoutServiceTestWithContext extends ExerciseAbility{
 		Assert.assertEquals(CurrentWorkout.workout.get(0).showInfo(),ee.showInfo()); 
 		
 	}
+	@Test
+	public void should_replce_exercise_by_exercise_using_volume() {
+		//given
+		VolumeRequest volumeRequest = new VolumeRequest(2,50);
+		List<Exercise> threeExercises = addThreeExercisesToDB();
+		int index = 1;
+		ExerciseElement ee = new ExerciseElement(threeExercises.get(1),volumeRequest);
+		currentService.addExercise(threeExercises.get(0).getId(), 3, 10);
+		//when
+		currentService.replaceByExerciseAtIndex(threeExercises.get(1).getId(), 0, volumeRequest);
+		//then
+		Assert.assertEquals(CurrentWorkout.workout.get(0).showInfo(),ee.showInfo()); 
+		
+	}
+	
+	
 	
 	@Test
 	public void should_add_exercise_to_current_workout_and_to_db () {

@@ -25,10 +25,10 @@ import pl.easy.www.WorkoutProject.protocol.request.VolumeRequest;
 public class CurrentWorkoutService {
 	
 	@Autowired
-	ExerciseService exerciseService;
+	private ExerciseService exerciseService;
 	
 	public void addExercise(int id, int series, int repetitions ) {
-		
+		 
 		Exercise exerciseFromDB = exerciseService.giveById(id);
 		
 		CurrentWorkout.workout.add(new ExerciseElement(
@@ -106,6 +106,7 @@ public class CurrentWorkoutService {
 				volumeRequest.getSeries(),
 				volumeRequest.getRepetitions()));
 	}
+	
 	public void replaceByExerciseRequest(CompleteRequest completeRequest,int currId) {
 		Exercise addedExercise = exerciseService.add(new Exercise(completeRequest.getExerciseRequest()));	
 		CurrentWorkout.workout.set(currId, new ExerciseElement(
@@ -121,6 +122,10 @@ public class CurrentWorkoutService {
 		CurrentWorkout.workout.set(index, new BreakElement(duration));
 	}
 	
+	public void replaceByBreakAtIndex(BreakRequest breakRequest, int index) {
+		CurrentWorkout.workout.set(index, new BreakElement(breakRequest));
+		
+	}
 	
 	public List<WorkoutPice> getList(){
 		return CurrentWorkout.workout;
@@ -164,10 +169,7 @@ public class CurrentWorkoutService {
 		
 	}
 
-	public void replaceByBreakAtIndex(BreakRequest breakRequest, int index) {
-		CurrentWorkout.workout.set(index, new BreakElement(breakRequest));
-		
-	}
+	
 	
 	
 	

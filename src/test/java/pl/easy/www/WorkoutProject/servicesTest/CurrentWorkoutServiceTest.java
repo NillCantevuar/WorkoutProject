@@ -24,6 +24,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import pl.easy.www.WorkoutProject.currentWorkout.BreakElement;
 import pl.easy.www.WorkoutProject.currentWorkout.CurrentWorkout;
 import pl.easy.www.WorkoutProject.currentWorkout.ExerciseElement;
+import pl.easy.www.WorkoutProject.entity.Exercise;
+import pl.easy.www.WorkoutProject.entity.ReadyWorkout;
 import pl.easy.www.WorkoutProject.mappers.BreakMapper;
 import pl.easy.www.WorkoutProject.mappers.ExerciseMapper;
 import pl.easy.www.WorkoutProject.protocol.request.BreakRequest;
@@ -37,7 +39,7 @@ import pl.easy.www.WorkoutProject.support.CurrentWorkoutAbility;
 @SpringBootTest
 public class CurrentWorkoutServiceTest extends CurrentWorkoutAbility{
 	
-	CurrentWorkoutService currentWorkoutService = new CurrentWorkoutService();
+	private CurrentWorkoutService currentWorkoutService = new CurrentWorkoutService();
 	
 	@Before
 	public void clear() {
@@ -162,10 +164,6 @@ public class CurrentWorkoutServiceTest extends CurrentWorkoutAbility{
 		Assert.assertEquals(CurrentWorkout.workout.get(index),expected); 
 	}
 	
-	
-	
-	
-	//to robie
 	@Test
 	public void should_replce_break_by_break_not_equal_old_break_using_request() {
 		//given
@@ -178,10 +176,7 @@ public class CurrentWorkoutServiceTest extends CurrentWorkoutAbility{
 		//then
 		Assert.assertNotEquals(CurrentWorkout.workout.get(index),expected); 
 	}
-	
-	
-	
-	
+		
 	@Test
 	public void should_replce_exercise_by_break_equal_break() {
 		//given
@@ -194,7 +189,6 @@ public class CurrentWorkoutServiceTest extends CurrentWorkoutAbility{
 		//then
 		Assert.assertEquals(CurrentWorkout.workout.get(index),expected); 
 	}
-	
 	
 	@Ignore
 	@Test

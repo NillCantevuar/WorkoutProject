@@ -31,6 +31,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import pl.easy.www.WorkoutProject.entity.Exercise;
+import pl.easy.www.WorkoutProject.protocol.request.ExerciseRequest;
 import pl.easy.www.WorkoutProject.services.ExerciseService;
 import pl.easy.www.WorkoutProject.support.ExerciseAbility;
 
@@ -40,11 +41,11 @@ import pl.easy.www.WorkoutProject.support.ExerciseAbility;
 public class ExerciseControllerTest extends ExerciseAbility{
 
 	@Autowired
-	MockMvc mockMvc;
+	private MockMvc mockMvc;
 	@Autowired
-	ObjectMapper objectMapper;
+	private ObjectMapper objectMapper;
 	@Autowired
-	ExerciseService exerciseService;
+	private ExerciseService exerciseService;
 	
 	@Before
 	public void clearAll () {
@@ -118,6 +119,7 @@ public class ExerciseControllerTest extends ExerciseAbility{
 	
 	@Test
 	public void should_update_exercise_using_request_at_id() throws Exception {
+		//given
 		List<Exercise> exerciseList = generateThreeExercises();
 		Exercise addedExercise = exerciseService.add(exerciseList.get(0));
 		String freshExerciseJson = objectMapper.writeValueAsString(exerciseList.get(1));
@@ -132,6 +134,18 @@ public class ExerciseControllerTest extends ExerciseAbility{
 				 contentJson, Exercise.class);
 		assertEquals(exerciseList.get(1).showInfo(), exerciseRecived.showInfo());
 	}
+	@Test
+	public void sholud_clear_all_db() throws Exception {
+		//given
+		addThreeExercisesToDB();
+		//when
+		mockMvc.perform(delete("/api/exercises/clear"))
+			.andExpect(status().isOk());
+		//then
+		assertEquals(0, exerciseService.getAllExercises().size());
+	}
+	
+	
 	
 }
 	

@@ -19,6 +19,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import pl.easy.www.WorkoutProject.entity.Exercise;
+import pl.easy.www.WorkoutProject.protocol.request.ExerciseRequest;
 import pl.easy.www.WorkoutProject.services.ExerciseService;
 import pl.easy.www.WorkoutProject.support.ExerciseAbility;
 
@@ -99,10 +100,10 @@ public class ExerciseServiceTest extends ExerciseAbility{
 		//given
 		Exercise exercise = generateExercise();
 		exerciseService.add(exercise);
+		
 		//when
 		exerciseService.delete(exercise);
 		//then	
-		
 		Assert.assertEquals(0, exerciseService.getAllExercises().size());
 	     List<Exercise> exercises  = exerciseService.getAllExercises();
 	     

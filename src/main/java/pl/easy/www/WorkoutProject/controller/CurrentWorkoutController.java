@@ -29,7 +29,7 @@ import pl.easy.www.WorkoutProject.services.CurrentWorkoutService;
 public class CurrentWorkoutController {
 	
 	@Autowired
-	CurrentWorkoutService service;
+	private CurrentWorkoutService service;
 	
 	@GetMapping
 	public @ResponseBody List<WorkoutPice> getCurrentWorkout(){
@@ -77,7 +77,7 @@ public class CurrentWorkoutController {
 	}
 	@PostMapping ("/replaceByBreak/request/{current}")
 	public void replaceByBreakAtIndex(@RequestBody BreakRequest request,@PathVariable int current) {
-		service.replaceByBreakAtIndex(request.getDuration(),current);
+		service.replaceByBreakAtIndex(request,current);
 	}
 	@PostMapping ("/replaceByBreak/duration/{current}")
 	public void replaceByBreakAtIndex(@PathVariable int current,@RequestParam int duration) {
@@ -91,7 +91,7 @@ public class CurrentWorkoutController {
 	
 	@PostMapping ("/saveWorkout")	
 	public void saveWorkout() {
-		service.saveAtDesktop(service.saveWorkout());
+		service.saveAtDesktop(service.saveWorkout()); 
 	}
 	
 	@DeleteMapping("/clear")

@@ -1,20 +1,28 @@
 package pl.easy.www.WorkoutProject.support;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import pl.easy.www.WorkoutProject.currentWorkout.CurrentWorkout;
 import pl.easy.www.WorkoutProject.currentWorkout.ExerciseElement;
+import pl.easy.www.WorkoutProject.entity.ReadyWorkout;
 import pl.easy.www.WorkoutProject.protocol.request.BreakRequest;
 import pl.easy.www.WorkoutProject.protocol.request.CompleteRequest;
 import pl.easy.www.WorkoutProject.protocol.request.ExerciseRequest;
 import pl.easy.www.WorkoutProject.protocol.request.VolumeRequest;
 import pl.easy.www.WorkoutProject.services.CurrentWorkoutService;
 import pl.easy.www.WorkoutProject.services.ExerciseService;
+import pl.easy.www.WorkoutProject.services.ReadyWorkoutService;
 
 public class CurrentWorkoutAbility extends ExerciseAbility{
 	
 	@Autowired
-	ExerciseService exerciseService;
+	private ExerciseService exerciseService;
+	
+	@Autowired
+	private ReadyWorkoutService readyWorkoutService;
 	
 	public void prepereNotEmptyList() {
 		
@@ -101,7 +109,40 @@ public class CurrentWorkoutAbility extends ExerciseAbility{
 		return new BreakRequest(60);
 	}
 	
+	public ReadyWorkout generateSingleReadyWorkout () {
+		prepereNotEmptyList();
+		return readyWorkoutService.getCurrentWorkoutAsReady();	
+	}
+	public List<ReadyWorkout> generateThreeDiffrentReadyWorkouts(){
+		List<ReadyWorkout> workouts = new ArrayList<>();
+		
+		prepereNotEmptyList();
+		workouts.add(readyWorkoutService.getCurrentWorkoutAsReady());
+		CurrentWorkout.workout.clear();
+		
+		prepereNotEmptyListV2();
+		workouts.add(readyWorkoutService.getCurrentWorkoutAsReady());
+		CurrentWorkout.workout.clear();
+		
+		prepereNotEmptyListV3();
+		workouts.add(readyWorkoutService.getCurrentWorkoutAsReady());
+		CurrentWorkout.workout.clear();
+		
+		return workouts;
+	}
 	
+	public ReadyWorkout addSingleReadyWorkoutToDB(){
+		return readyWorkoutService.saveReadyWorkoutToDB(generateSingleReadyWorkout()); 
+	}
+	
+	public List<ReadyWorkout> addThreeReadyWorkoutsToDB(){
+		List<ReadyWorkout> workouts = generateThreeDiffrentReadyWorkouts();
+		
+		for (ReadyWorkout readyWorkout : workouts) {
+			readyWorkoutService.saveReadyWorkoutToDB(readyWorkout);
+		}
+		return readyWorkoutService.getAllWorkoutsObjects();
+	}
 	 
 
 

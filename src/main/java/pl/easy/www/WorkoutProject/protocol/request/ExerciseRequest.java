@@ -1,5 +1,7 @@
 package pl.easy.www.WorkoutProject.protocol.request;
 
+import pl.easy.www.WorkoutProject.entity.Exercise;
+
 public class ExerciseRequest {
 	
 	private String exerciseGroupName;
@@ -7,6 +9,15 @@ public class ExerciseRequest {
 	private String muscleGroupName;
 	private String muscleDirectName;
 	
+	public ExerciseRequest(Exercise exercise) {
+		this.exerciseGroupName = exercise.getExerciseGroupName();
+		this.exerciseDirectName = exercise.getExerciseDirectName();
+		this.muscleGroupName = exercise.getMuscleGroupName();
+		this.muscleDirectName = exercise.getMuscleDirectName();
+	}
+	public ExerciseRequest() {
+	
+	}
 	public String getExerciseGroupName() {
 		return exerciseGroupName;
 	}

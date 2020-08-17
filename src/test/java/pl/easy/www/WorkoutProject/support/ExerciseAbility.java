@@ -14,7 +14,7 @@ import pl.easy.www.WorkoutProject.services.ExerciseService;
 public class ExerciseAbility {
 	
 	@Autowired
-	ExerciseService exerciseService ;
+	private ExerciseService exerciseService ;
 	
 	public List<Exercise> generateThreeExercises() {
 		

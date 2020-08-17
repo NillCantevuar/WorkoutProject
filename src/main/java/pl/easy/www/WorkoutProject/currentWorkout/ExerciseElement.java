@@ -3,6 +3,7 @@ package pl.easy.www.WorkoutProject.currentWorkout;
 import pl.easy.www.WorkoutProject.entity.Exercise;
 import pl.easy.www.WorkoutProject.interfaces.WorkoutPice;
 import pl.easy.www.WorkoutProject.protocol.request.CompleteRequest;
+import pl.easy.www.WorkoutProject.protocol.request.VolumeRequest;
 
 public class ExerciseElement implements WorkoutPice{
 	
@@ -52,7 +53,15 @@ public class ExerciseElement implements WorkoutPice{
 		
 	}
 	
-	
+	public ExerciseElement(Exercise exercise, VolumeRequest volumeRequest) {
+		this.exerciseGroupName = exercise.getExerciseGroupName();
+		this.exerciseDirectName = exercise.getExerciseDirectName();
+		this.muscleGroupName = exercise.getMuscleGroupName();
+		this.muscleDirectName = exercise.getMuscleDirectName();
+		this.series = volumeRequest.getSeries();
+		this.repetitions = volumeRequest.getRepetitions();
+		
+	}
 	public String getExerciseGroupName() {
 		return exerciseGroupName;
 	}

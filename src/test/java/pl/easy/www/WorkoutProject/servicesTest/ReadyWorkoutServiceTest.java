@@ -31,10 +31,10 @@ import pl.easy.www.WorkoutProject.support.CurrentWorkoutAbility;
 public class ReadyWorkoutServiceTest extends CurrentWorkoutAbility{
 	
 	@Autowired
-	ReadyWorkoutService service;
+	private ReadyWorkoutService service;
 	
 	@Autowired
-	CurrentWorkoutService currentService;
+	private CurrentWorkoutService currentService;
 	
 	
 	@Before
@@ -164,12 +164,12 @@ public class ReadyWorkoutServiceTest extends CurrentWorkoutAbility{
 		List<WorkoutPice> expectedList =new ArrayList<>(currentService.getList()); 
 		currentService.clearCurrentWorkout();
 		//when
-		service.loadReadyWorkoutToCurrent(savedReadyWorkout.getId());
+		service.loadReadyWorkoutToCurrentFromDB(savedReadyWorkout.getId());
 		//then
 		assertEquals(currentService.getList(), expectedList);
 
 	}
-	@Ignore
+	
 	@Test
 	public void should_load_file_and_return_string() {
 		//given
@@ -190,12 +190,51 @@ public class ReadyWorkoutServiceTest extends CurrentWorkoutAbility{
 				"\r\n" + 
 				"E:Dipy | Na drazku\r\n" + 
 				"Target: rece | triceps\r\n" + 
-				"Series: 3 Reps: 10\n ";
+				"Series: 3 Reps: 10\r\n";
 		//when
 		String resultContent = service.loadFileFromDiscToContetnString(filePath);
 		//then
-		assertEquals(expectedContent, resultContent);
+		assertEquals(expectedContent.trim(), resultContent.trim());
 		
+	}
+	//getCurrentWorkoutAsReady
+	@Test
+	public void should_return_ReadyWorkout_from_CurrentWorkout () {
+		//given
+		prepereNotEmptyList();
+		String savedWorkout =currentService.saveWorkout();
+		//when
+		ReadyWorkout result = service.getCurrentWorkoutAsReady();
+		//then
+		assertEquals(savedWorkout, result.getContent());
+		
+	}
+	
+	@Test
+	public void should_save_ReadyWorkout_to_DB_using_object() {
+		//given
+		ReadyWorkout readyWorkout =  generateSingleReadyWorkout();
+		//when
+		service.saveReadyWorkoutToDB(readyWorkout);
+		//then
+		List<ReadyWorkout> allWorkouts = service.getAllWorkoutsObjects();
+		assertEquals(readyWorkout.getContent(), allWorkouts.get(0).getContent());
+	}
+	@Ignore
+	@Test
+	public void ability_showdown() {
+		System.out.println("generateSingleReadyWorkout:");
+		System.out.println(generateSingleReadyWorkout());
+		System.out.println();
+		System.out.println("generateThreeReadyWorkouts:");
+		System.out.println(generateThreeDiffrentReadyWorkouts());
+		System.out.println();
+		System.out.println("addSingleReadyWorkoutToDB:");
+		System.out.println(addSingleReadyWorkoutToDB());
+		System.out.println();
+		System.out.println("addThreeReadyWorkoutsToDB:");
+		System.out.println(addThreeReadyWorkoutsToDB());
+		System.out.println();
 	}
 	
 

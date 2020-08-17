@@ -1,0 +1,10 @@
+potrzebuje metody
+ktora zapisze mi 
+currentW
+do obiektu Ready
+Workout
+
+
+potrzebuje metody
+ktora doda mi RW
+do BD po obiekcie

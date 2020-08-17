@@ -20,13 +20,17 @@ import pl.easy.www.WorkoutProject.repository.ReadyWorkoutRepository;
 public class ReadyWorkoutService {
 	
 	@Autowired
-	ReadyWorkoutRepository repository; 
+	private ReadyWorkoutRepository repository; 
 	
 	@Autowired
 	CurrentWorkoutService currentWorkoutService;
 	
 	public ReadyWorkout saveCurrentWorkoutToDB () {	
 		return repository.save(new ReadyWorkout(extractContentFromCurrentWorkout()));
+	}
+	
+	public ReadyWorkout getCurrentWorkoutAsReady() {
+		return new ReadyWorkout(currentWorkoutService.saveWorkout());
 	}
 	
 	public ReadyWorkout getReadyWorkoutFromDB(int id) { 
@@ -70,7 +74,7 @@ public class ReadyWorkoutService {
 		
 	}
 
-	public void loadReadyWorkoutToCurrent(int id) {
+	public void loadReadyWorkoutToCurrentFromDB(int id) {
 		ReadyWorkout loadedWorkout = getReadyWorkoutFromDB(id);
 		List<WorkoutPice> tempList =ContentMapper.decodeContetn(loadedWorkout.getContent());
 		currentWorkoutService.overvriteCurrentWorkout(tempList);
@@ -78,12 +82,12 @@ public class ReadyWorkoutService {
 	}
 	public String loadFileFromDiscToContetnString(String filePath) {
 		String content ="";
-		Path path = Paths.get(filePath);
+		Path path = Paths.get(filePath); 
 		File myFile = path.toFile();
 		try {
 			Scanner scanner = new Scanner(myFile);
 			while (scanner.hasNextLine()) {
-				content += scanner.nextLine()+"\n";
+				content += scanner.nextLine()+"\r\n";
 			}
 			scanner.close();
 			}catch (FileNotFoundException e) {
@@ -93,6 +97,11 @@ public class ReadyWorkoutService {
 	
 		
 		return content;
+	}
+
+	public ReadyWorkout saveReadyWorkoutToDB(ReadyWorkout readyWorkout) {
+		return repository.save(readyWorkout);
+		
 	}
 
 }
