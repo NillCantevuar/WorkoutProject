@@ -65,14 +65,14 @@ public class ReadyWorkoutServiceTest extends CurrentWorkoutAbility{
 		service.saveCurrentWorkoutToDB();
 		//then
 		List<ReadyWorkout> readyWorkouts = service.getAllWorkoutsObjects();
-		assertEquals(currentService.saveWorkout(), readyWorkouts.get(0).getContent()); 
+		assertEquals(currentService.currentWorkoutToString(), readyWorkouts.get(0).getContent()); 
 	}
 	
 	@Test
 	public void should_get_single_readyWorkout_using_id () {
 		//given
 		prepereNotEmptyList();
-		String expectedContent = currentService.saveWorkout();
+		String expectedContent = currentService.currentWorkoutToString();
 		ReadyWorkout savedReadyWorkout = service.saveCurrentWorkoutToDB();
 		//when
 		ReadyWorkout pulledReadyWorkout =  service.getReadyWorkoutFromDB(savedReadyWorkout.getId());
@@ -113,7 +113,7 @@ public class ReadyWorkoutServiceTest extends CurrentWorkoutAbility{
 		prepereNotEmptyList();
 		ReadyWorkout savedOldReadyWorkut = service.saveCurrentWorkoutToDB();
 		CurrentWorkout.workout.clear();
-		String freshContent = currentService.saveWorkout();
+		String freshContent = currentService.currentWorkoutToString();
 		//when
 		service.updateWorkoutInDB(savedOldReadyWorkut.getId(), freshContent);
 		//then
@@ -202,7 +202,7 @@ public class ReadyWorkoutServiceTest extends CurrentWorkoutAbility{
 	public void should_return_ReadyWorkout_from_CurrentWorkout () {
 		//given
 		prepereNotEmptyList();
-		String savedWorkout =currentService.saveWorkout();
+		String savedWorkout =currentService.currentWorkoutToString();
 		//when
 		ReadyWorkout result = service.getCurrentWorkoutAsReady();
 		//then

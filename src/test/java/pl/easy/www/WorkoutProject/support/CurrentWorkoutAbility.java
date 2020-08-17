@@ -27,7 +27,7 @@ public class CurrentWorkoutAbility extends ExerciseAbility{
 	public void prepereNotEmptyList() {
 		
 		CurrentWorkoutService service = new CurrentWorkoutService();
-		BreakRequest bRequest= generateSingleBreakRequest();
+		BreakRequest bRequest= generateSingleBreakRequest(); 
 		CompleteRequest eRequest = generateSingleCompleteRequest();
 		ExerciseElement exerciseElement = new ExerciseElement(eRequest);
 		

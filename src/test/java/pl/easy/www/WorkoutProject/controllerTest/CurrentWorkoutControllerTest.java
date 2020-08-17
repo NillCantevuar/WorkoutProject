@@ -66,7 +66,7 @@ public class CurrentWorkoutControllerTest extends CurrentWorkoutAbility{
 	}
 	
 	@Test
-	public void should_give_full_list () throws Exception {
+	public void should_give_full_list () throws Exception { 
 		//given
 		prepereNotEmptyList();
 		List<WorkoutPice> currentList = new ArrayList<WorkoutPice>(CurrentWorkout.workout);
@@ -285,6 +285,21 @@ public class CurrentWorkoutControllerTest extends CurrentWorkoutAbility{
 	List<Exercise> exercisesFromDb = exerciseService.getAllExercises();
 	assertEquals(exercisesFromDb.get(0).showInfo(),expectedExercise.showInfo() );
 	assertEquals(exerciseElement.showInfo(), CurrentWorkout.workout.get(0).showInfo());
+	}
+	
+	@Test
+	public void should_give_String_from_current_workout() throws Exception {
+		//given
+		prepereNotEmptyList();
+		String expectedString = currentService.currentWorkoutToString();
+		//when
+		MvcResult result =	mockMvc.perform(get("/api/currentWorkout/toString"))
+			.andExpect(status().isOk())
+			.andReturn();
+		//then
+		String contetnJson = result.getResponse().getContentAsString();
+		System.out.println(contetnJson);
+		assertEquals(expectedString, contetnJson);
 	}
 	
 	

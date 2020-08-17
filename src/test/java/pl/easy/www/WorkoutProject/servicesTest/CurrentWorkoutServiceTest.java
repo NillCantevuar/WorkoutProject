@@ -213,7 +213,7 @@ public class CurrentWorkoutServiceTest extends CurrentWorkoutAbility{
 				"Series: 3 Reps: 10";				
 		prepereNotEmptyList();
 		//when
-		String actual = currentWorkoutService.saveWorkout();
+		String actual = currentWorkoutService.currentWorkoutToString();
 		//then
 		Assert.assertEquals(expected, actual);	
 	} 
@@ -221,7 +221,7 @@ public class CurrentWorkoutServiceTest extends CurrentWorkoutAbility{
 	@Test
 	public void check_saving_to_desktop() { 
 		prepereNotEmptyList(); 
-		currentWorkoutService.saveAtDesktop(currentWorkoutService.saveWorkout());
+		currentWorkoutService.saveAtDesktop(currentWorkoutService.currentWorkoutToString());
 	}
 	
 	@Test

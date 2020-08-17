@@ -80,10 +80,45 @@ public class ReadyWorkoutControllerTest extends CurrentWorkoutAbility {
 	@Test
 	public void should_get_readyWorkout_from_DB_using_id() throws Exception{
 		//given
-		
+		addSingleReadyWorkoutToDB();
+		List<ReadyWorkout> readyWorkouts = readyWorkoutService.getAllWorkoutsObjects();
+		String expectedString = objectMapper.writeValueAsString(readyWorkouts.get(0));
 		//when
-		
+		MvcResult result = mockMvc.perform(get("/api/readyWorkouts/getWorkout/"+readyWorkouts.get(0).getId()))
+					.andExpect(status().isOk()).andReturn();
 		//then
+		String contetnJson = result.getResponse().getContentAsString();
+		assertEquals(expectedString, contetnJson);
+	}
+	
+	@Test
+	public void should_save_ReadyWorkout_to_DB_using_object() throws Exception {
+		//given
+		ReadyWorkout generatedReadyWorkout = generateSingleReadyWorkout();
+		String generatedAsString = objectMapper.writeValueAsString(generatedReadyWorkout);
+		//when
+		mockMvc.perform(post("/api/readyWorkouts/saveWorkout")
+				.contentType("application/json").content(generatedAsString))
+			.andExpect(status().isOk());
+		//then
+		List<ReadyWorkout> allWorkouts = readyWorkoutService.getAllWorkoutsObjects();
+		assertEquals(generatedReadyWorkout.getContent(), allWorkouts.get(0).getContent());
+		
+	}
+	
+	@Test
+	public void should_give_currentWorkout_as_ReadyWorkout() throws Exception {
+		//given
+		prepereNotEmptyList();
+		String currentString = currentWorkoutService.currentWorkoutToString();
+		//when
+		MvcResult result = mockMvc.perform(get("/api/readyWorkouts/getCurrent"))
+			.andExpect(status().isOk())
+			.andReturn();
+		//then
+		String contetnJson = result.getResponse().getContentAsString();
+		ReadyWorkout parsedObject = objectMapper.readValue(contetnJson, ReadyWorkout.class);
+		assertEquals(currentString, parsedObject.getContent());
 		
 	}
 

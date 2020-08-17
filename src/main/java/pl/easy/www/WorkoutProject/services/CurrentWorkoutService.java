@@ -131,7 +131,7 @@ public class CurrentWorkoutService {
 		return CurrentWorkout.workout;
 	} 
 	
-	public String saveWorkout () {
+	public String currentWorkoutToString () {
 		StringBuilder sb = new StringBuilder(); 
 		for (WorkoutPice workoutPice : CurrentWorkout.workout) {	
 			sb.append(workoutPice.toString());	

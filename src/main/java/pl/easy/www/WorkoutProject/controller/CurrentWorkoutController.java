@@ -29,7 +29,7 @@ import pl.easy.www.WorkoutProject.services.CurrentWorkoutService;
 public class CurrentWorkoutController {
 	
 	@Autowired
-	private CurrentWorkoutService service;
+	private CurrentWorkoutService service; 
 	
 	@GetMapping
 	public @ResponseBody List<WorkoutPice> getCurrentWorkout(){
@@ -89,9 +89,13 @@ public class CurrentWorkoutController {
 		service.delete(current);
 	}
 	
-	@PostMapping ("/saveWorkout")	
+	@GetMapping ("/saveWorkout")	
 	public void saveWorkout() {
-		service.saveAtDesktop(service.saveWorkout()); 
+		service.saveAtDesktop(service.currentWorkoutToString()); 
+	}
+	@GetMapping ("/toString")
+	public @ResponseBody String currentWorkoutToString() {
+		return service.currentWorkoutToString();
 	}
 	
 	@DeleteMapping("/clear")

@@ -30,7 +30,7 @@ public class ReadyWorkoutService {
 	}
 	
 	public ReadyWorkout getCurrentWorkoutAsReady() {
-		return new ReadyWorkout(currentWorkoutService.saveWorkout());
+		return new ReadyWorkout(currentWorkoutService.currentWorkoutToString());
 	}
 	
 	public ReadyWorkout getReadyWorkoutFromDB(int id) { 
@@ -54,7 +54,7 @@ public class ReadyWorkoutService {
 	}
 	
 	public void deleteAllFromDB() {
-		repository.deleteAll();
+		repository.deleteAll(); 
 	}
 	
 	public ReadyWorkout updateWorkoutInDB (int idToUpdate,String content) {
@@ -64,7 +64,7 @@ public class ReadyWorkoutService {
 	}
 	
 	private String extractContentFromCurrentWorkout() {
-		return currentWorkoutService.saveWorkout();
+		return currentWorkoutService.currentWorkoutToString();
 		
 	}
 	 

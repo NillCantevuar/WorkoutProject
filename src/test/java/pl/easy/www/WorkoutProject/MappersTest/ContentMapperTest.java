@@ -54,7 +54,7 @@ public class ContentMapperTest extends CurrentWorkoutAbility{
 		//given
 		prepereNotEmptyList();
 		CurrentWorkoutService service = new CurrentWorkoutService();
-		String content =  service.saveWorkout();
+		String content =  service.currentWorkoutToString();
 		List<WorkoutPice> expectedList = new ArrayList<WorkoutPice>(CurrentWorkout.workout);
 		//when
 		List<WorkoutPice> resultList = ContentMapper.decodeContetn(content);
