@@ -31,8 +31,9 @@ public class CurrentWorkoutController {
 	@Autowired
 	private CurrentWorkoutService service; 
 	
+	
 	@GetMapping
-	public @ResponseBody List<WorkoutPice> getCurrentWorkout(){
+	public @ResponseBody List<WorkoutPice>getCurrentWorkout(){
 		return service.getList();
 	}
 	

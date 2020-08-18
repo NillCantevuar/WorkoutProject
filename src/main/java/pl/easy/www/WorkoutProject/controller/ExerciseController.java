@@ -2,7 +2,11 @@ package pl.easy.www.WorkoutProject.controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -32,20 +36,31 @@ public class ExerciseController {
 	private ExerciseService service;
 
 	@PostMapping("/add")
-	public ExerciseResponse add(@RequestBody ExerciseRequest request) {
-		return ExerciseMapper
+	public ResponseEntity<ExerciseResponse> add(@RequestBody ExerciseRequest request) {
+		
+		//??
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Test", "Test");
+		
+		ExerciseResponse response = ExerciseMapper
 				.mapExercise(service.add(new Exercise(
 						request.getExerciseGroupName(),
 						request.getExerciseDirectName(), 
 						request.getMuscleGroupName(),
 						request.getMuscleDirectName()
 						)));		
+		
+		return ResponseEntity.ok().headers(headers).body(response);
+		
+		
 	}
 	
 	@GetMapping
-	public @ResponseBody List<ExerciseResponse> getAllExercises() {
-		return ExerciseMapper.mapExerciseList(
-				service.getAllExercises());
+	public ResponseEntity<List<ExerciseResponse>> getAllExercises() {
+		List<ExerciseResponse> responseList = ExerciseMapper.mapExerciseList(
+																	service.getAllExercises());
+		
+		return ResponseEntity.ok(responseList);
 	}
 	 
 	@GetMapping("/getById/{id}")

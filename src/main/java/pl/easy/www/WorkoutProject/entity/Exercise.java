@@ -7,13 +7,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.hateoas.Link;
+
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import pl.easy.www.WorkoutProject.interfaces.WorkoutPice;
 import pl.easy.www.WorkoutProject.protocol.request.ExerciseRequest;
 
 
 @Entity
 @Table(name="exercises")
-public class Exercise implements WorkoutPice {
+public class Exercise  implements WorkoutPice  {
 	
 	
 	@Id
@@ -51,6 +56,7 @@ public class Exercise implements WorkoutPice {
 		this.muscleDirectName = request.getMuscleDirectName();
 		this.muscleGroupName = request.getMuscleGroupName();
 	}
+	
 	
 	public Integer getId() {
 		return id;
