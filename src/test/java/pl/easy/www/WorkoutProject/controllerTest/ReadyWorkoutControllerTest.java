@@ -1,6 +1,7 @@
 package pl.easy.www.WorkoutProject.controllerTest;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
@@ -9,6 +10,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.junit.Before;
 import org.junit.Ignore;
@@ -160,6 +162,47 @@ public class ReadyWorkoutControllerTest extends CurrentWorkoutAbility {
 			.andExpect(status().isOk());
 		//then
 		assertEquals(0, readyWorkoutService.getAllWorkoutsObjects().size());
+		
+	}
+	
+	@Test
+	public void shuld_delete_ReadyWorkout_from_DB_using_id () throws Exception {
+		//given
+		ReadyWorkout addedReadyWorkout =  addSingleReadyWorkoutToDB();
+		//when
+		mockMvc.perform(delete("/api/readyWorkouts/delete/"+addedReadyWorkout.getId()))
+			.andExpect(status().isOk());
+		//then
+		assertThrows(NoSuchElementException.class,
+				() -> readyWorkoutService.getReadyWorkoutFromDB(addedReadyWorkout.getId()));
+	}
+	
+	@Test
+	public void check_list_workouts_from_DB_as_String_with_dates () throws Exception {
+		//given
+		List<ReadyWorkout> listOfWorkouts = addThreeReadyWorkoutsToDB();
+		//when
+		MvcResult result = mockMvc.perform(get("/api/readyWorkouts/list"))
+			.andExpect(status().isOk()).andReturn();
+		
+		System.out.println(result.getResponse().getContentAsString());
+		
+	}
+	
+	@Test
+	public void should_give_full_list_of_ReadyWorkout_from_DB () throws Exception {
+		//given
+		List<ReadyWorkout> listOfWorkouts = addThreeReadyWorkoutsToDB();
+		//when
+		MvcResult result = mockMvc.perform(get("/api/readyWorkouts/getAll"))
+			.andExpect(status().isOk())
+			.andReturn();
+		//then
+		String resultJson = result.getResponse().getContentAsString();		
+		List<ReadyWorkout> parsedList = objectMapper.readValue(
+				resultJson,objectMapper.getTypeFactory().constructCollectionType(List.class, ReadyWorkout.class));
+		
+		assertEquals(listOfWorkouts, parsedList);
 		
 	}
 

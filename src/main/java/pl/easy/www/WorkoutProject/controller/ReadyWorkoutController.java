@@ -1,5 +1,7 @@
 package pl.easy.www.WorkoutProject.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -63,5 +65,20 @@ public class ReadyWorkoutController {
 	@DeleteMapping("/deleteAll")
 	public void deleteAll() {
 		service.deleteAllFromDB();
+	}
+	
+	@DeleteMapping("/delete/{id}")
+	public void delete (@PathVariable int id) {
+		service.deleteWorkoutFromDB(id);
+	}
+	
+	@GetMapping("/list")
+	public @ResponseBody String list () {
+		return service.listWorkoutsWithDates();
+	}
+	
+	@GetMapping("/getAll")
+	public @ResponseBody List<ReadyWorkout> getAll() {
+		return service.getAllWorkoutsObjects();
 	}
 }

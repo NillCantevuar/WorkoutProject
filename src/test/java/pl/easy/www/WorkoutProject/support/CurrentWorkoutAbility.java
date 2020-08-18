@@ -136,6 +136,7 @@ public class CurrentWorkoutAbility extends ExerciseAbility{
 	}
 	
 	public List<ReadyWorkout> addThreeReadyWorkoutsToDB(){
+		
 		List<ReadyWorkout> workouts = generateThreeDiffrentReadyWorkouts();
 		
 		for (ReadyWorkout readyWorkout : workouts) {
