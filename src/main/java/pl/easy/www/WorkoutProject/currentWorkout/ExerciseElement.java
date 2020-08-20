@@ -1,11 +1,13 @@
 package pl.easy.www.WorkoutProject.currentWorkout;
 
+import org.springframework.hateoas.RepresentationModel;
+
 import pl.easy.www.WorkoutProject.entity.Exercise;
 import pl.easy.www.WorkoutProject.interfaces.WorkoutPice;
 import pl.easy.www.WorkoutProject.protocol.request.CompleteRequest;
 import pl.easy.www.WorkoutProject.protocol.request.VolumeRequest;
 
-public class ExerciseElement implements WorkoutPice{
+public class ExerciseElement extends RepresentationModel<ExerciseElement> implements WorkoutPice {
 	
 	private String exerciseGroupName;
 	private String exerciseDirectName;

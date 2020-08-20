@@ -40,7 +40,7 @@ public class CurrentWorkoutService {
 				repetitions));
 	}
 	
-	public void addExercise(CompleteRequest request) { 
+	public ExerciseElement addExercise(CompleteRequest request) { 
 		
 		ExerciseRequest exerciseR = request.getExerciseRequest();
 		VolumeRequest volume = request.getVolumeRequest();
@@ -48,6 +48,8 @@ public class CurrentWorkoutService {
 		Exercise addedExercise = exerciseService.add(new Exercise(exerciseR));
 		ExerciseElement exerciseElement = new ExerciseElement(addedExercise,volume.getSeries(),volume.getRepetitions());
 		CurrentWorkout.workout.add(exerciseElement);
+		
+		return exerciseElement;
 			
 	}
 	

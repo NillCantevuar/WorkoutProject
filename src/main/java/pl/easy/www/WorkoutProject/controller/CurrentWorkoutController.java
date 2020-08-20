@@ -3,6 +3,12 @@ package pl.easy.www.WorkoutProject.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;import org.springframework.web.bind.annotation.PatchMapping;
@@ -16,6 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.vaadin.flow.router.OptionalParameter;
 
+import pl.easy.www.WorkoutProject.currentWorkout.CurrentWorkout;
+import pl.easy.www.WorkoutProject.currentWorkout.ExerciseElement;
 import pl.easy.www.WorkoutProject.interfaces.WorkoutPice;
 import pl.easy.www.WorkoutProject.protocol.request.BreakRequest;
 import pl.easy.www.WorkoutProject.protocol.request.CompleteRequest;
@@ -48,8 +56,14 @@ public class CurrentWorkoutController {
 	}
 	
 	@PostMapping("/addExercise/complete")
-	public void addExercise(@RequestBody CompleteRequest completeRequest) {
-		service.addExercise(completeRequest);
+	public ResponseEntity<CollectionModel<WorkoutPice>> addExercise(@RequestBody CompleteRequest completeRequest) {
+		
+		Link link  = WebMvcLinkBuilder.linkTo(CurrentWorkoutController.class).slash("").withSelfRel();	
+		ExerciseElement element = service.addExercise(completeRequest);
+		CollectionModel<WorkoutPice> model = new CollectionModel<WorkoutPice>(CurrentWorkout.workout, link);
+		
+		return new ResponseEntity<>(model, HttpStatus.OK);
+		
 	}
 	
 	@PostMapping("/addBreak/complete")

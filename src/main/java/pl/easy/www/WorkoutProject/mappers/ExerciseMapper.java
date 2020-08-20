@@ -15,7 +15,7 @@ import pl.easy.www.WorkoutProject.protocol.response.ExerciseResponse;
 
 public class ExerciseMapper {
 	
-	
+	//mapToExercise
 	public static Exercise mapExerciseResponse (ExerciseResponse exerciseResponse) {
 		
 		return new Exercise(
@@ -27,6 +27,7 @@ public class ExerciseMapper {
 		
 	}
 	
+	//mapToExerciseResponse
 	public static ExerciseResponse mapExercise (Exercise exercise) {
 		
 		return new ExerciseResponse(
@@ -37,7 +38,7 @@ public class ExerciseMapper {
 				exercise.getMuscleDirectName());
 		
 	}
-	
+	//mapToListOFExerciseResponse
 	public static List<ExerciseResponse> mapExerciseList(List<Exercise> inputList){
 		List<ExerciseResponse> exerciseResponses = inputList.stream().map(
 				e -> ExerciseMapper.mapExercise(e))
@@ -45,7 +46,7 @@ public class ExerciseMapper {
 		return exerciseResponses;
 	}
 	
-	
+	//mapToListOfExercise
 	public static List<Exercise> mapExerciseResponseList(List<ExerciseResponse> inputList){
 		List<Exercise> exercises = inputList.stream().map(
 				e -> ExerciseMapper.mapExerciseResponse(e))
@@ -53,6 +54,7 @@ public class ExerciseMapper {
 		return exercises;
 	}
 	
+	//mapToExerciseElement
 	public static ExerciseElement mapToElement(Exercise exercise) {
 		
 		return new ExerciseElement(exercise.getExerciseGroupName(),
@@ -61,7 +63,7 @@ public class ExerciseMapper {
 				exercise.getMuscleDirectName());
 		
 	}
-	
+	//mapToExerciseElement
 	public static ExerciseElement eRequestToEElement (CompleteRequest completeRequest) {
 		
 		return new ExerciseElement(

@@ -302,6 +302,11 @@ public class CurrentWorkoutControllerTest extends CurrentWorkoutAbility{
 		assertEquals(expectedString, contetnJson);
 	}
 	
-	
+	@Test
+	public void fake() throws JsonProcessingException {
+		CompleteRequest cr = generateSingleCompleteRequest();
+		String json = objectMapper.writeValueAsString(cr);
+		System.out.println(json);
+	}
 
 }
