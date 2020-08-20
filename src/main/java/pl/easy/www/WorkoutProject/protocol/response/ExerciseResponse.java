@@ -1,6 +1,9 @@
 package pl.easy.www.WorkoutProject.protocol.response;
 
-public class ExerciseResponse {
+import org.springframework.hateoas.RepresentationModel;
+
+
+public class ExerciseResponse extends RepresentationModel<ExerciseResponse> {
 	
 	private int exerciseId;
 	private String exerciseGroupName;

@@ -7,10 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.springframework.hateoas.Link;
+import org.springframework.hateoas.RepresentationModel;
 
-
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import pl.easy.www.WorkoutProject.interfaces.WorkoutPice;
 import pl.easy.www.WorkoutProject.protocol.request.ExerciseRequest;
@@ -18,7 +16,7 @@ import pl.easy.www.WorkoutProject.protocol.request.ExerciseRequest;
 
 @Entity
 @Table(name="exercises")
-public class Exercise  implements WorkoutPice  {
+public class Exercise extends RepresentationModel<Exercise>  implements WorkoutPice  {
 	
 	
 	@Id
@@ -58,6 +56,17 @@ public class Exercise  implements WorkoutPice  {
 	}
 	
 	
+	
+	
+	public Exercise(Integer id, String exerciseGroupName, String exerciseDirectName, String muscleGroupName,
+			String muscleDirectName) {
+		this.id = id;
+		this.exerciseGroupName = exerciseGroupName;
+		this.exerciseDirectName = exerciseDirectName;
+		this.muscleGroupName = muscleGroupName;
+		this.muscleDirectName = muscleDirectName;
+	}
+
 	public Integer getId() {
 		return id;
 	}

@@ -4,6 +4,10 @@ import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.server.LinkBuilder;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
 
 import pl.easy.www.WorkoutProject.entity.Exercise;
 import pl.easy.www.WorkoutProject.mappers.ExerciseMapper;
@@ -56,11 +61,8 @@ public class ExerciseController {
 	}
 	
 	@GetMapping
-	public ResponseEntity<List<ExerciseResponse>> getAllExercises() {
-		List<ExerciseResponse> responseList = ExerciseMapper.mapExerciseList(
-																	service.getAllExercises());
-		
-		return ResponseEntity.ok(responseList);
+	public @ResponseBody List<Exercise> getAllExercises() {
+		return service.getAllExercises();
 	}
 	 
 	@GetMapping("/getById/{id}")
