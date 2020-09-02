@@ -163,7 +163,7 @@ public class CurrentWorkoutServiceTestWithContext extends ExerciseAbility{
 	public void should_add_exercise_to_current_workout_and_to_db () {
 		//given
 		CompleteRequest completeRequest =  generateSingleCompleteRequest();
-		ExerciseElement expectedElement = ExerciseMapper.eRequestToEElement(completeRequest);
+		ExerciseElement expectedElement = ExerciseMapper.mapToExerciseElement(completeRequest);
 		//when
 		currentService.addExercise(completeRequest);
 		//then
@@ -185,7 +185,7 @@ public class CurrentWorkoutServiceTestWithContext extends ExerciseAbility{
 		Exercise addedExercise =  addOneExercise();
 		currentService.addExercise(addedExercise.getId(),new VolumeRequest(5, 5));
 		CompleteRequest completeRequest = generateSingleCompleteRequest();
-		ExerciseElement expectedElement = ExerciseMapper.eRequestToEElement(completeRequest);
+		ExerciseElement expectedElement = ExerciseMapper.mapToExerciseElement(completeRequest);
 		Exercise expectedExercise = new Exercise(completeRequest.getExerciseRequest());
 		//when
 		currentService.replaceByExerciseRequest(completeRequest, interestId);

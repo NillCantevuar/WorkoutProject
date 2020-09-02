@@ -6,7 +6,7 @@ import pl.easy.www.WorkoutProject.protocol.request.BreakRequest;
 public class BreakMapper {
 
 	//map to BreakElement
-	public static BreakElement map(BreakRequest request) {
+	public static BreakElement mapToBreakElement(BreakRequest request) {
 		return new BreakElement(request.getDuration());
 	}
 }

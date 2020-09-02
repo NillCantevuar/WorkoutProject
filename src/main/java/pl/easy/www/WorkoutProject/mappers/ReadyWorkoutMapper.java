@@ -9,8 +9,7 @@ import pl.easy.www.WorkoutProject.entity.ReadyWorkout;
 public class ReadyWorkoutMapper {
 	
 	
-	//mapToListOfReadyWorkout
-	public static List<ReadyWorkout> mapIterableToList (Iterable<ReadyWorkout> iterableCollection){
+	public static List<ReadyWorkout> mapToListOfReadyWorkout (Iterable<ReadyWorkout> iterableCollection){
 		return StreamSupport
 				.stream(iterableCollection.spliterator(),false)
 				.collect(Collectors.toList());

@@ -69,7 +69,7 @@ public class CurrentWorkoutService {
 	
 	public void addBreak(BreakRequest request) {
 		
-		CurrentWorkout.workout.add(BreakMapper.map(request));
+		CurrentWorkout.workout.add(BreakMapper.mapToBreakElement(request));
 		
 	}
 	public void addBreak(int duration) {

@@ -38,7 +38,7 @@ public class ReadyWorkoutService {
 	}
 	
 	public List<ReadyWorkout> getAllWorkoutsObjects(){
-		 return ReadyWorkoutMapper.mapIterableToList(repository.findAll());
+		 return ReadyWorkoutMapper.mapToListOfReadyWorkout(repository.findAll());
 	}
 	
 	public String listWorkoutsWithDates() {

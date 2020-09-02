@@ -15,8 +15,8 @@ import pl.easy.www.WorkoutProject.protocol.response.ExerciseResponse;
 
 public class ExerciseMapper {
 	
-	//mapToExercise
-	public static Exercise mapExerciseResponse (ExerciseResponse exerciseResponse) {
+	
+	public static Exercise mapToExercise (ExerciseResponse exerciseResponse) {
 		
 		return new Exercise(
 				exerciseResponse.getExerciseId(),
@@ -27,8 +27,7 @@ public class ExerciseMapper {
 		
 	}
 	
-	//mapToExerciseResponse
-	public static ExerciseResponse mapExercise (Exercise exercise) {
+	public static ExerciseResponse mapToExerciseResponse (Exercise exercise) {
 		
 		return new ExerciseResponse(
 				exercise.getId(),
@@ -38,24 +37,23 @@ public class ExerciseMapper {
 				exercise.getMuscleDirectName());
 		
 	}
-	//mapToListOFExerciseResponse
-	public static List<ExerciseResponse> mapExerciseList(List<Exercise> inputList){
+	public static List<ExerciseResponse> mapToListOfExerciseResponse(List<Exercise> inputList){
 		List<ExerciseResponse> exerciseResponses = inputList.stream().map(
-				e -> ExerciseMapper.mapExercise(e))
+				e -> ExerciseMapper.mapToExerciseResponse(e))
 				.collect(Collectors.toList());
 		return exerciseResponses;
 	}
 	
-	//mapToListOfExercise
-	public static List<Exercise> mapExerciseResponseList(List<ExerciseResponse> inputList){
+	
+	public static List<Exercise> mapToListOfExercise(List<ExerciseResponse> inputList){
 		List<Exercise> exercises = inputList.stream().map(
-				e -> ExerciseMapper.mapExerciseResponse(e))
+				e -> ExerciseMapper.mapToExercise(e))
 				.collect(Collectors.toList());
 		return exercises;
 	}
 	
-	//mapToExerciseElement
-	public static ExerciseElement mapToElement(Exercise exercise) {
+	
+	public static ExerciseElement mapToExerciseElement(Exercise exercise) {
 		
 		return new ExerciseElement(exercise.getExerciseGroupName(),
 				exercise.getExerciseDirectName(),
@@ -63,8 +61,7 @@ public class ExerciseMapper {
 				exercise.getMuscleDirectName());
 		
 	}
-	//mapToExerciseElement
-	public static ExerciseElement eRequestToEElement (CompleteRequest completeRequest) {
+	public static ExerciseElement mapToExerciseElement (CompleteRequest completeRequest) {
 		
 		return new ExerciseElement(
 				completeRequest.getExerciseRequest().getExerciseGroupName(),

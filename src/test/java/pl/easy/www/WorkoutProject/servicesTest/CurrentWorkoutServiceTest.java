@@ -128,7 +128,7 @@ public class CurrentWorkoutServiceTest extends CurrentWorkoutAbility{
 		prepereNotEmptyList();
 		int index = 0;
 		BreakRequest breakRequest = generateSingleDifferentBreakRequest();
-		BreakElement expected = BreakMapper.map(breakRequest);
+		BreakElement expected = BreakMapper.mapToBreakElement(breakRequest);
 		//when
 		currentWorkoutService.replaceByBreakAtIndex(breakRequest.getDuration(), index);
 		//then
@@ -141,7 +141,7 @@ public class CurrentWorkoutServiceTest extends CurrentWorkoutAbility{
 		prepereNotEmptyList();
 		int index = 0;
 		BreakRequest breakRequest = generateSingleDifferentBreakRequest();
-		BreakElement expected = BreakMapper.map(generateSingleBreakRequest());
+		BreakElement expected = BreakMapper.mapToBreakElement(generateSingleBreakRequest());
 		//when
 		currentWorkoutService.replaceByBreakAtIndex(breakRequest.getDuration(), index);
 		//then
@@ -157,7 +157,7 @@ public class CurrentWorkoutServiceTest extends CurrentWorkoutAbility{
 		prepereNotEmptyList();
 		int index = 0;
 		BreakRequest breakRequest = generateSingleDifferentBreakRequest();
-		BreakElement expected = BreakMapper.map(breakRequest);
+		BreakElement expected = BreakMapper.mapToBreakElement(breakRequest);
 		//when
 		currentWorkoutService.replaceByBreakAtIndex(breakRequest.getDuration(), index);
 		//then
@@ -170,7 +170,7 @@ public class CurrentWorkoutServiceTest extends CurrentWorkoutAbility{
 		prepereNotEmptyList();
 		int index = 0;
 		BreakRequest breakRequest = generateSingleDifferentBreakRequest();
-		BreakElement expected = BreakMapper.map(generateSingleBreakRequest());
+		BreakElement expected = BreakMapper.mapToBreakElement(generateSingleBreakRequest());
 		//when
 		currentWorkoutService.replaceByBreakAtIndex(breakRequest, index);
 		//then
@@ -183,7 +183,7 @@ public class CurrentWorkoutServiceTest extends CurrentWorkoutAbility{
 		prepereNotEmptyList();
 		int index = 1;
 		BreakRequest breakRequest = generateSingleDifferentBreakRequest();
-		BreakElement expected = BreakMapper.map(breakRequest);
+		BreakElement expected = BreakMapper.mapToBreakElement(breakRequest);
 		//when
 		currentWorkoutService.replaceByBreakAtIndex(breakRequest, index);
 		//then

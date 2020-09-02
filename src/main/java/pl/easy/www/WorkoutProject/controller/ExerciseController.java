@@ -32,6 +32,8 @@ import pl.easy.www.WorkoutProject.protocol.response.ExerciseResponse;
 import pl.easy.www.WorkoutProject.repository.ExerciseRepository;
 import pl.easy.www.WorkoutProject.services.ExerciseService;
 
+//Kontroler sluzacy do wykonywania operacji na bazie danych przechowywujacej obiekty cwiczen.
+
 @RestController
 @Transactional
 @RequestMapping("/api/exercises")
@@ -40,41 +42,43 @@ public class ExerciseController {
 	@Autowired
 	private ExerciseService service;
 
+	//Endpoint sluzacy do dodawania cwiczenia do bazy danych
+
 	@PostMapping("/add")
 	public ResponseEntity<ExerciseResponse> add(@RequestBody ExerciseRequest request) {
-		
-		//??
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Test", "Test");
-		
 		ExerciseResponse response = ExerciseMapper
-				.mapExercise(service.add(new Exercise(
+				.mapToExerciseResponse(service.add(new Exercise(
 						request.getExerciseGroupName(),
 						request.getExerciseDirectName(), 
 						request.getMuscleGroupName(),
 						request.getMuscleDirectName()
 						)));		
-		
 		return ResponseEntity.ok().headers(headers).body(response);
-		
-		
 	}
+
+	//Endpoint pobierajacy wszystkie cwiczenia z bazy danych
 	
 	@GetMapping
 	public @ResponseBody List<Exercise> getAllExercises() {
 		return service.getAllExercises();
 	}
+
+	//Endpoint pobierajacy pojedyncze cwiczenie na podstawie id
 	 
 	@GetMapping("/getById/{id}")
 	public @ResponseBody ExerciseResponse getExerciseById(@PathVariable int id) {
 		return ExerciseMapper
-				.mapExercise(service.giveById(id));
+				.mapToExerciseResponse(service.giveById(id));
 	}
+
+	//Endpoint podmieniajacy cwiczenie w bazie danych na podtawie id bazy danych podanego w PathVariable
 	
 	@PatchMapping("/update/{id}")
 	public ExerciseResponse	update(@RequestBody ExerciseRequest request, @PathVariable int id){
 		return ExerciseMapper
-				.mapExercise(service.update(new Exercise(
+				.mapToExerciseResponse(service.update(new Exercise(
 						request.getExerciseGroupName(),
 						request.getExerciseDirectName(),
 						request.getMuscleGroupName(),
@@ -82,11 +86,15 @@ public class ExerciseController {
 						id
 						));		 
 	}
+
+	//Endpoint usuwajacy cwiczenie z bazy danych na podstawie id podanego w PathVariable
 	
 	@DeleteMapping("/delete/{id}")
 	public void delete(@PathVariable int id) {	
 		service.delete(id);
 	}
+
+	//Endpoint czyszczacy baze danych
 	
 	@DeleteMapping("/clear")
 	public void clear() {
