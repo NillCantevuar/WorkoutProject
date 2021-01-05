@@ -61,8 +61,11 @@ public class ExerciseController {
 	//Endpoint pobierajacy wszystkie cwiczenia z bazy danych
 	
 	@GetMapping
-	public @ResponseBody List<Exercise> getAllExercises() {
-		return service.getAllExercises();
+	public ResponseEntity<List<Exercise>>  getAllExercises() {
+		HttpHeaders httpHeaders = new HttpHeaders();
+		httpHeaders.add("TestAll","TestAll");
+		List<Exercise> exerciseList = service.getAllExercises();
+		return ResponseEntity.ok().headers(httpHeaders).body(exerciseList);
 	}
 
 	//Endpoint pobierajacy pojedyncze cwiczenie na podstawie id
